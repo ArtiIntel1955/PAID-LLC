@@ -54,6 +54,10 @@ This repository contains our business documentation and planning materials:
 - `ROADMAP_SDL.md` - Product roadmap and SDLC implementation plan
 - `WEBSITE_ENHANCEMENT_EXECUTION_PLAN.md` - Comprehensive plan for implementing advanced website features
 - `PRIORITY_FEATURE_ROADMAP.md` - Priority roadmap for implementing high-impact features
+- `FORMSPREE_SETUP_GUIDE.md` - Detailed guide for setting up contact form functionality
+- `VIDEO_CONFERENCING_SETUP_GUIDE.md` - Complete guide for setting up video conferencing capabilities
+- `SCHEDULING_SYSTEM_SETUP_GUIDE.md` - Comprehensive guide for setting up scheduling system integration
+- `WEBSITE_ACTIVATION_CHECKLIST.md` - Complete checklist for activating all website features and systems
 
 ## Technologies We Work With
 
