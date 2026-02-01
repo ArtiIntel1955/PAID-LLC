@@ -240,6 +240,77 @@
             box-shadow: var(--shadow-hover);
         }
 
+        /* AI Tools Section */
+        .ai-tools {
+            padding: 6rem 0;
+            background: var(--light);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tool-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .tool-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .tool-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .tool-card p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .tool-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.875rem 1.75rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .tool-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
         /* Stats Section */
         .stats {
             padding: 6rem 0;
@@ -558,6 +629,82 @@
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: var(--white);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="tech-grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23tech-grid)"/></svg>');
+            background-size: 40px;
+            opacity: 0.3;
+        }
+        
+        .cta-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-text {
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
+        }
+        
+        .cta-form {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .cta-form h3 {
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+        
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.875rem;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+        }
+        
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
         }
 
         .cta h2 {
@@ -587,6 +734,83 @@
             color: var(--primary-dark);
             transform: translateY(-2px);
             box-shadow: var(--shadow-hover);
+        }
+
+        /* Technology Showcase */
+        .technology-showcase {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: var(--white);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .tech-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .tech-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .tech-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .tech-card p {
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .tech-stats {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #94a3b8;
         }
 
         /* Footer */
@@ -992,6 +1216,48 @@
         </div>
     </section>
 
+    <!-- AI Tools Section -->
+    <section class="ai-tools">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Free AI Assessment Tools</h2>
+                <p>Get started with our complimentary tools to evaluate your AI readiness and potential</p>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-card fade-in-up">
+                    <div class="tool-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3>AI Readiness Assessment</h3>
+                    <p>Evaluate your organization's preparedness for AI implementation across key dimensions that impact success.</p>
+                    <a href="https://github.com/ArtiIntel1955/PAID-LLC/blob/main/AI_Readiness_Assessment.md" target="_blank" class="tool-button">
+                        <i class="fas fa-download"></i> Get Assessment
+                    </a>
+                </div>
+                <div class="tool-card fade-in-up">
+                    <div class="tool-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>AI Tool Selection Survey</h3>
+                    <p>Identify the most suitable AI tools for your organization based on your specific needs and requirements.</p>
+                    <a href="https://github.com/ArtiIntel1955/PAID-LLC/blob/main/AI_Tool_Selection_Survey.md" target="_blank" class="tool-button">
+                        <i class="fas fa-download"></i> Get Survey
+                    </a>
+                </div>
+                <div class="tool-card fade-in-up">
+                    <div class="tool-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <h3>Implementation Checklist</h3>
+                    <p>Ensure your organization is fully prepared for successful AI implementation with our comprehensive checklist.</p>
+                    <a href="https://github.com/ArtiIntel1955/PAID-LLC/blob/main/AI_Implementation_Preparation_Checklist.md" target="_blank" class="tool-button">
+                        <i class="fas fa-download"></i> Get Checklist
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Testimonials Section -->
     <section id="results" class="testimonials">
         <div class="container">
@@ -1061,14 +1327,109 @@
         </div>
     </section>
 
+    <!-- Technology Showcase Section -->
+    <section class="technology-showcase">
+        <div class="container">
+            <div class="section-header fade-in-up">
+                <h2>Advanced AI Technologies</h2>
+                <p>Our expertise spans the latest AI platforms and implementation methodologies</p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-card fade-in-up">
+                    <div class="tech-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Generative AI</h3>
+                    <p>Implementing ChatGPT, Claude, and Gemini for content creation, analysis, and automation</p>
+                    <div class="tech-stats">
+                        <div class="stat">
+                            <div class="stat-number">40-60%</div>
+                            <div class="stat-label">Content Creation Time Saved</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-card fade-in-up">
+                    <div class="tech-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Process Automation</h3>
+                    <p>Building custom solutions with Python, RPA, and AI-powered tools</p>
+                    <div class="tech-stats">
+                        <div class="stat">
+                            <div class="stat-number">50%</div>
+                            <div class="stat-label">Operational Costs Reduced</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-card fade-in-up">
+                    <div class="tech-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Data Analytics</h3>
+                    <p>Leveraging AI for predictive analytics and business intelligence</p>
+                    <div class="tech-stats">
+                        <div class="stat">
+                            <div class="stat-number">50%</div>
+                            <div class="stat-label">Faster Data Analysis</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-card fade-in-up">
+                    <div class="tech-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Integration</h3>
+                    <p>Seamlessly connecting AI tools with your existing systems</p>
+                    <div class="tech-stats">
+                        <div class="stat">
+                            <div class="stat-number">95%</div>
+                            <div class="stat-label">System Uptime Guaranteed</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section id="contact" class="cta">
         <div class="container">
-            <h2>Ready to Boost Your Productivity by 22-60%?</h2>
-            <p>Schedule a complimentary strategy session to discover how AI adoption can deliver measurable efficiency gains for your business. See how companies like yours are realizing 22-60% productivity improvements with the right AI implementation.</p>
-            <a href="mailto:ConnectwithPAID@outlook.com" class="cta-button">
-                <i class="fas fa-calendar-check"></i> Book Your Strategy Session
-            </a>
+            <div class="cta-content">
+                <div class="cta-text">
+                    <h2>Ready to Boost Your Productivity by 22-60%?</h2>
+                    <p>Schedule a complimentary strategy session to discover how AI adoption can deliver measurable efficiency gains for your business. See how companies like yours are realizing 22-60% productivity improvements with the right AI implementation.</p>
+                    <a href="#contact-form" class="cta-button">
+                        <i class="fas fa-calendar-check"></i> Book Your Strategy Session
+                    </a>
+                </div>
+                <div class="cta-form">
+                    <h3>Quick Contact</h3>
+                    <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <select name="interest" required>
+                                <option value="" disabled selected>I'm interested in...</option>
+                                <option value="ai-strategy">AI Strategy Consulting</option>
+                                <option value="process-automation">Process Automation</option>
+                                <option value="data-analytics">Data Analytics</option>
+                                <option value="training">Training & Onboarding</option>
+                                <option value="assessment">AI Readiness Assessment</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="How can we help you?" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="cta-button">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
 
