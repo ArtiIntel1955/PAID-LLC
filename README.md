@@ -45,6 +45,15 @@ This repository contains our business documentation and planning materials:
 - `online_store_stripe.html` - Our Stripe-integrated e-commerce platform ready for real transactions
 - `sample_course_package.txt` - Example of fully developed product with all materials
 - `STRIPE_INTEGRATION_GUIDE.md` - Complete guide to integrating Stripe payments for real transactions
+- `AI_Readiness_Assessment.md` - Tool to evaluate AI readiness for organizations
+- `AI_Tool_Selection_Survey.md` - Survey to identify suitable AI tools for specific needs
+- `AI_Implementation_Preparation_Checklist.md` - Comprehensive checklist for AI implementation preparation
+- `AI_Implementation_Audit_Tool.md` - Tool to evaluate AI implementation effectiveness
+- `AI_Implementation_Completion_Report.md` - Template for documenting AI implementation projects
+- `OPERATIONALIZATION_GUIDE.md` - Complete guide to operationalizing the PAID LLC website
+- `ROADMAP_SDL.md` - Product roadmap and SDLC implementation plan
+- `WEBSITE_ENHANCEMENT_EXECUTION_PLAN.md` - Comprehensive plan for implementing advanced website features
+- `PRIORITY_FEATURE_ROADMAP.md` - Priority roadmap for implementing high-impact features
 
 ## Technologies We Work With
 
