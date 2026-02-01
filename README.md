@@ -80,6 +80,7 @@ This repository is organized into several key areas:
 - `CUSTOMER_EXPERIENCE_REVIEW.md` - Customer journey review and feedback analysis
 - `GOOGLE_MEET_CALANDLY_SETUP.md` - Complete guide for setting up Google Meet with Calendly integration
 - `TEAMS_CALANDLY_SETUP.md` - Complete guide for setting up Microsoft Teams with Calendly integration
+- `STRIPE_INTEGRATION_GUIDE.md` - Complete guide for setting up Stripe payment processing
 
 #### `docs/tasks/` - Task Management
 - `ACTIVE_TASKS.md` - Currently active tasks requiring attention
