@@ -61,6 +61,8 @@ This repository contains our business documentation and planning materials:
 - `SECURITY_EVALUATION_REPORT.md` - Comprehensive security evaluation of the PAID LLC website
 - `SECURITY_REMEDIATION_GUIDE.md` - Step-by-step guide to address all security vulnerabilities
 - `UPDATED_ACTIVATION_CHECKLIST.md` - Updated checklist reflecting security improvements
+- `LEGAL_COMPLIANCE_REPORT.md` - Legal compliance and data minimization analysis
+- `FORM_COMPLIANCE_IMPLEMENTATION_GUIDE.md` - Step-by-step guide for implementing compliant forms
 
 ## Technologies We Work With
 
