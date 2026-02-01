@@ -60,6 +60,7 @@ This repository contains our business documentation and planning materials:
 - `WEBSITE_ACTIVATION_CHECKLIST.md` - Complete checklist for activating all website features and systems
 - `SECURITY_EVALUATION_REPORT.md` - Comprehensive security evaluation of the PAID LLC website
 - `SECURITY_REMEDIATION_GUIDE.md` - Step-by-step guide to address all security vulnerabilities
+- `UPDATED_ACTIVATION_CHECKLIST.md` - Updated checklist reflecting security improvements
 
 ## Technologies We Work With
 
