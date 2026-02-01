@@ -18,7 +18,7 @@ Ready to explore how AI and automation can benefit your business? Let's start wi
 ## Contact Information
 
 ### Primary Contact Methods
-- **Email**: hello@paid-llc.com (or your preferred business email)
+- **Email**: ConnectwithPAID@outlook.com
 - **Phone**: [Your business phone number]
 - **Website**: www.paid-llc.com (or your business website)
 - **LinkedIn**: [Your LinkedIn profile/business page]

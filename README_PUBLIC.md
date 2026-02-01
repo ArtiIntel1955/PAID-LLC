@@ -39,7 +39,7 @@ We believe in practical, results-driven solutions that deliver measurable value 
 
 ## Getting Started
 
-If you're interested in learning more about how we can help your business, please reach out through the contact information in our documentation.
+If you're interested in learning more about how we can help your business, please reach out to us at ConnectwithPAID@outlook.com.
 
 ## Contributing
 

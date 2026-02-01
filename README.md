@@ -50,7 +50,7 @@ This repository contains our business documentation and planning materials:
 
 ## Get Started
 
-Ready to transform your business with AI and automation? Contact us to discuss your specific needs and discover how we can help you achieve your goals.
+Ready to transform your business with AI and automation? Contact us at ConnectwithPAID@outlook.com to discuss your specific needs and discover how we can help you achieve your goals.
 
 ---
 
