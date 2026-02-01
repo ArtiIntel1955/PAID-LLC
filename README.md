@@ -65,6 +65,7 @@ This repository contains our business documentation and planning materials:
 - `FORM_COMPLIANCE_IMPLEMENTATION_GUIDE.md` - Step-by-step guide for implementing compliant forms
 - `HTML_FILES_ANALYSIS.md` - Analysis of HTML files for duplication and linking issues
 - `NAVIGATION_GUIDE.md` - Guide to website structure and resolution of duplication issues
+- `CUSTOMER_EXPERIENCE_REVIEW.md` - Customer journey review and feedback analysis
 
 ## Technologies We Work With
 
