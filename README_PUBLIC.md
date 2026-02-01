@@ -9,7 +9,7 @@ This repository is organized into several key areas:
 ### Business Documents
 - `BUSINESS_PLAN.md` - Our comprehensive business plan
 - `SERVICES_CATALOG.md` - Detailed breakdown of our service offerings
-- `PORTFOLIO.md` - Case studies and success stories
+- `PORTFOLIO.md` - Sample project examples and capabilities
 - `CONTACT_ONBOARDING.md` - How to work with us
 
 ### Marketing Materials
@@ -17,6 +17,10 @@ This repository is organized into several key areas:
 
 ### Templates
 - `templates/` - Standardized templates for proposals and contracts
+
+### Technical Examples
+- `index.html` - Professional web presence
+- `premium_dashboard.html` - Example of our technical capabilities
 
 ### Client Work
 - `client_work/` - Secure area for active client projects (separate from public materials)
