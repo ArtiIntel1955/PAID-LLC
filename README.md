@@ -78,6 +78,7 @@ This repository is organized into several key areas:
 - `HTML_FILES_ANALYSIS.md` - Analysis of HTML files for duplication and linking issues
 - `NAVIGATION_GUIDE.md` - Guide to website structure and resolution of duplication issues
 - `CUSTOMER_EXPERIENCE_REVIEW.md` - Customer journey review and feedback analysis
+- `GOOGLE_MEET_CALANDLY_SETUP.md` - Complete guide for setting up Google Meet with Calendly integration
 
 #### `docs/tasks/` - Task Management
 - `ACTIVE_TASKS.md` - Currently active tasks requiring attention

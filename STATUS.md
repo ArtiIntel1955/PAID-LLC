@@ -25,7 +25,7 @@ PAID LLC is a professional AI development and business solutions company focused
 
 ### 📋 **Active Tasks**
 - [x] **Completed**: FormSubmit integration (contact form functionality)
-- [ ] **High Priority**: Configure Calendly scheduling system
+- [ ] **High Priority**: Configure Calendly scheduling system with Google Meet
 - [ ] **Medium Priority**: Verify email delivery at ConnectwithPAID@outlook.com
 - [ ] **Medium Priority**: Test video conferencing integration
 - [ ] **Low Priority**: Create social media profiles
