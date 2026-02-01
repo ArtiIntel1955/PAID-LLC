@@ -63,6 +63,8 @@ This repository contains our business documentation and planning materials:
 - `UPDATED_ACTIVATION_CHECKLIST.md` - Updated checklist reflecting security improvements
 - `LEGAL_COMPLIANCE_REPORT.md` - Legal compliance and data minimization analysis
 - `FORM_COMPLIANCE_IMPLEMENTATION_GUIDE.md` - Step-by-step guide for implementing compliant forms
+- `HTML_FILES_ANALYSIS.md` - Analysis of HTML files for duplication and linking issues
+- `NAVIGATION_GUIDE.md` - Guide to website structure and resolution of duplication issues
 
 ## Technologies We Work With
 
