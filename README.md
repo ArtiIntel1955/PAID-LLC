@@ -79,6 +79,7 @@ This repository is organized into several key areas:
 - `NAVIGATION_GUIDE.md` - Guide to website structure and resolution of duplication issues
 - `CUSTOMER_EXPERIENCE_REVIEW.md` - Customer journey review and feedback analysis
 - `GOOGLE_MEET_CALANDLY_SETUP.md` - Complete guide for setting up Google Meet with Calendly integration
+- `TEAMS_CALANDLY_SETUP.md` - Complete guide for setting up Microsoft Teams with Calendly integration
 
 #### `docs/tasks/` - Task Management
 - `ACTIVE_TASKS.md` - Currently active tasks requiring attention

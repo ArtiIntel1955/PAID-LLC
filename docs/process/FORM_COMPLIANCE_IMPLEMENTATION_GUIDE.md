@@ -52,7 +52,7 @@ Replace the current contact form with a more privacy-conscious version:
 
 **Replace with:**
 ```html
-<form id="contact-form" action="#" method="POST">
+<form id="contact-form" action="https://formsubmit.co/ConnectwithPAID@outlook.com" method="POST">
     <div class="form-group">
         <input type="email" id="email-input" name="email" placeholder="Business Email*" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Enter a valid business email address">
     </div>
@@ -143,9 +143,16 @@ document.getElementById('contact-form')?.addEventListener('submit', function(e) 
         return;
     }
     
-    // Show configuration notice
-    statusDiv.innerHTML = '<p style="color: #f59e0b; background: rgba(245, 158, 11, 0.1); border: 1px solid #f59e0b;">⚠️ Form not configured yet. Please set up Formspree integration before using this form.</p>';
+    // Submit form to FormSubmit
+    this.submit();
+    statusDiv.innerHTML = '<p style="color: #10b981; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981;">✓ Message sent successfully! We will contact you shortly.</p>';
     statusDiv.style.display = 'block';
+    
+    // Reset form after successful submission
+    setTimeout(() => {
+        document.getElementById('contact-form').reset();
+        statusDiv.style.display = 'none';
+    }, 3000);
 });
 ```
 
