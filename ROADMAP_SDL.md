@@ -323,12 +323,21 @@ If scaling requires more functionality:
 - Uptime (99.9%+)
 - Mobile responsiveness scores
 - Security rating
+- Form completion rate (>70%)
+- Cross-browser compatibility (Chrome, Firefox, Safari, Edge)
+- Accessibility compliance (WCAG 2.1 AA)
 
 ### Business Metrics
 - Lead generation increase
 - Conversion rate improvement
 - Customer acquisition cost
 - Revenue attribution from site
+- Contact form submission rate
+- Time to first response for inquiries
+- Lead quality score (percentage of qualified leads)
+- Repeat visitor rate
+- Social sharing rate
+- Email newsletter signup rate
 
 ## Implementation Timeline
 
