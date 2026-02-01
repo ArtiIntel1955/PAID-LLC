@@ -42,7 +42,9 @@ This repository contains our business documentation and planning materials:
 - `premium_dashboard.html` - Example of our technical capabilities
 - `premium_consulting_website.html` - Our professional consulting website
 - `online_store.html` - Our e-commerce platform for digital products
+- `online_store_stripe.html` - Our Stripe-integrated e-commerce platform ready for real transactions
 - `sample_course_package.txt` - Example of fully developed product with all materials
+- `STRIPE_INTEGRATION_GUIDE.md` - Complete guide to integrating Stripe payments for real transactions
 
 ## Technologies We Work With
 
