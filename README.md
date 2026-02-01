@@ -39,6 +39,7 @@ This repository contains our business documentation and planning materials:
 - `templates/` - Business document templates
 - `PROGRESS_SUMMARY.md` - Summary of our development progress
 - `premium_dashboard.html` - Example of our technical capabilities
+- `premium_consulting_website.html` - Our professional consulting website
 
 ## Technologies We Work With
 
