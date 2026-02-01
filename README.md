@@ -58,6 +58,8 @@ This repository contains our business documentation and planning materials:
 - `VIDEO_CONFERENCING_SETUP_GUIDE.md` - Complete guide for setting up video conferencing capabilities
 - `SCHEDULING_SYSTEM_SETUP_GUIDE.md` - Comprehensive guide for setting up scheduling system integration
 - `WEBSITE_ACTIVATION_CHECKLIST.md` - Complete checklist for activating all website features and systems
+- `SECURITY_EVALUATION_REPORT.md` - Comprehensive security evaluation of the PAID LLC website
+- `SECURITY_REMEDIATION_GUIDE.md` - Step-by-step guide to address all security vulnerabilities
 
 ## Technologies We Work With
 
