@@ -38,8 +38,11 @@ This repository contains our business documentation and planning materials:
 - `marketing/` - Marketing materials and strategies
 - `templates/` - Business document templates
 - `PROGRESS_SUMMARY.md` - Summary of our development progress
+- `PRODUCT_CATALOG.md` - Complete product catalog with delivery specifications
 - `premium_dashboard.html` - Example of our technical capabilities
 - `premium_consulting_website.html` - Our professional consulting website
+- `online_store.html` - Our e-commerce platform for digital products
+- `sample_course_package.txt` - Example of fully developed product with all materials
 
 ## Technologies We Work With
 
@@ -52,6 +55,8 @@ This repository contains our business documentation and planning materials:
 ## Get Started
 
 Ready to transform your business with AI and automation? Contact us at ConnectwithPAID@outlook.com to discuss your specific needs and discover how we can help you achieve your goals.
+
+Explore our digital products in our online store to get immediate access to courses, templates, tools, and resources.
 
 ---
 
