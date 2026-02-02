@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Business Transformation | PAID LLC</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --accent: #10b981;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --dark-gray: #334155;
+            --white: #ffffff;
+            --border-radius: 12px;
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --max-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--secondary);
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .slide {
+            padding: 3rem;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+            line-height: 1.2;
+        }
+
+        .slide-subtitle {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .slide-content {
+            font-size: 1.25rem;
+            color: var(--dark-gray);
+            line-height: 1.7;
+            max-width: 800px;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a5f3fc, #bae6fd);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--primary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--light);
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--dark-gray);
+            font-size: 1rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            margin-top: 2rem;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 3rem 2rem;
+            background: var(--light);
+        }
+
+        .nav-button {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-button:hover {
+            background: var(--primary-dark);
+        }
+
+        .slide-nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .logo-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+
+        .logo-header i {
+            font-size: 2rem;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .timeline-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc {
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 2rem 1.5rem;
+            }
+            
+            .slide-title {
+                font-size: 2rem;
+            }
+            
+            .navigation {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Slide 1: Title Slide -->
+        <div class="slide" id="slide1">
+            <div class="logo-header">
+                <i class="fas fa-brain"></i>
+                <h1>PAID LLC</h1>
+            </div>
+            <h1 class="slide-title">AI-Powered Business Transformation</h1>
+            <p class="slide-subtitle">Realizing 22-60% Productivity Gains Through Strategic AI Implementation</p>
+            <div class="slide-content">
+                <p>Professional AI Development & Business Solutions</p>
+                <p>Driving measurable results through practical AI implementation</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Market Opportunity -->
+        <div class="slide" id="slide2">
+            <h2 class="slide-title">The AI Transformation Imperative</h2>
+            <div class="highlight">
+                <p>Organizations that strategically implement AI realize 22-60% productivity improvements, while those that delay risk falling behind competitors.</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">$15.7T</div>
+                    <div class="stat-label">Projected Global AI Value by 2030</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">73%</div>
+                    <div class="stat-label">Enterprises Exploring AI Solutions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">22-60%</div>
+                    <div class="stat-label">Productivity Gains Achievable</div>
+                </div>
+            </div>
+            <p style="margin-top: 2rem;">The question isn't whether to adopt AI—it's how quickly and effectively you can realize its value.</p>
+        </div>
+
+        <!-- Slide 3: Our Approach -->
+        <div class="slide" id="slide3">
+            <h2 class="slide-title">Our Proven Approach</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">AI Opportunity Assessment</div>
+                        <div class="timeline-desc">Deep dive into your business challenges and identify high-impact AI opportunities with clear ROI projections.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">AI Strategy & Design</div>
+                        <div class="timeline-desc">Develop a customized AI roadmap with clear priorities, timelines, and expected outcomes based on proven efficiency gains.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">AI Implementation & Testing</div>
+                        <div class="timeline-desc">Execute the AI plan with regular updates, rigorous testing, and iterative refinement to ensure optimal results.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">AI Optimization & Support</div>
+                        <div class="timeline-desc">Monitor AI performance, gather feedback, and continuously improve to maximize long-term value.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Microsoft Ecosystem Advantage -->
+        <div class="slide" id="slide4">
+            <h2 class="slide-title">Microsoft Ecosystem Advantage</h2>
+            <div class="highlight">
+                <p>Leverage your existing Microsoft investment with our specialized expertise in Copilot, Azure, and Office 365 integration.</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">22-35%</div>
+                    <div class="stat-label">Productivity Increase with Microsoft Copilot</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">57%</div>
+                    <div class="stat-label">Faster Task Completion</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Seamless Office 365 Integration</div>
+                </div>
+            </div>
+            <p style="margin-top: 2rem;">Our deep Microsoft expertise ensures smooth integration with your existing tools and workflows, minimizing disruption while maximizing value.</p>
+        </div>
+
+        <!-- Slide 5: Service Packages -->
+        <div class="slide" id="slide5">
+            <h2 class="slide-title">Flexible Service Packages</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">$2,500</div>
+                    <div class="stat-label">AI Assessment Package</div>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Comprehensive readiness assessment and roadmap</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$15,000+</div>
+                    <div class="stat-label">Implementation Package</div>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Full AI solution implementation and training</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$2,000/mo</div>
+                    <div class="stat-label">Monthly Support</div>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Ongoing optimization and support</p>
+                </div>
+            </div>
+            <p style="margin-top: 2rem;">Choose the engagement model that best fits your organization's needs and budget.</p>
+        </div>
+
+        <!-- Slide 6: ROI & Results -->
+        <div class="slide" id="slide6">
+            <h2 class="slide-title">Proven Results & ROI</h2>
+            <div class="highlight">
+                <p>Our clients consistently achieve measurable improvements with clear ROI within 3-6 months of implementation.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Efficiency Gains</div>
+                        <div class="timeline-desc">Realize 22-60% productivity improvements with strategic AI implementation.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Cost Reduction</div>
+                        <div class="timeline-desc">Reduce operational costs by up to 50% through strategic automation.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Speed Improvements</div>
+                        <div class="timeline-desc">Accelerate business processes with AI-powered automation.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Call to Action -->
+        <div class="slide" id="slide7">
+            <h2 class="slide-title">Ready to Transform Your Business?</h2>
+            <div class="highlight">
+                <p>Schedule a complimentary strategy session to discover how AI adoption can deliver measurable efficiency gains for your business.</p>
+            </div>
+            <p style="margin: 2rem 0;">Our video conferencing capabilities allow us to meet with you anywhere, anytime. See how organizations like yours are realizing 22-60% productivity improvements with the right AI implementation.</p>
+            <a href="../index.html#contact" class="cta-button">
+                <i class="fas fa-calendar-check"></i> Schedule Strategy Session
+            </a>
+            <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--gray);">Start your AI transformation journey today</p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <div class="slide-nav">
+                <button class="nav-button" onclick="goToSlide(1)">1</button>
+                <button class="nav-button" onclick="goToSlide(2)">2</button>
+                <button class="nav-button" onclick="goToSlide(3)">3</button>
+                <button class="nav-button" onclick="goToSlide(4)">4</button>
+                <button class="nav-button" onclick="goToSlide(5)">5</button>
+                <button class="nav-button" onclick="goToSlide(6)">6</button>
+                <button class="nav-button" onclick="goToSlide(7)">7</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goToSlide(slideNumber) {
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.style.display = 'none';
+            });
+            document.getElementById(`slide${slideNumber}`).style.display = 'flex';
+        }
+
+        // Initialize first slide
+        document.querySelectorAll('.slide').forEach((slide, index) => {
+            if (index !== 0) {
+                slide.style.display = 'none';
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') {
+                showNextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                showPrevSlide();
+            }
+        });
+
+        function showNextSlide() {
+            const currentSlide = document.querySelector('.slide:not([style*="display: none"])');
+            const currentId = currentSlide.id;
+            const currentNum = parseInt(currentId.replace('slide', ''));
+            if (currentNum < 7) {
+                goToSlide(currentNum + 1);
+            }
+        }
+
+        function showPrevSlide() {
+            const currentSlide = document.querySelector('.slide:not([style*="display: none"])');
+            const currentId = currentSlide.id;
+            const currentNum = parseInt(currentId.replace('slide', ''));
+            if (currentNum > 1) {
+                goToSlide(currentNum - 1);
+            }
+        }
+    </script>
+</body>
+</html>

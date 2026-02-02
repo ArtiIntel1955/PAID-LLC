@@ -88,6 +88,7 @@ This repository is organized into several key areas:
 ### Additional Directories
 - `marketing/` - Marketing materials and strategies
 - `templates/` - Business document templates
+- `presentation_materials/` - Professional presentation materials for various audiences
 
 ## Current Status
 For the most current status of the project, see `STATUS.md`
