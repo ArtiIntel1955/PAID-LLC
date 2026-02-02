@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable Operating Income Optimization - Best Buy Financial Data</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #003b64 0%, #0066cc 100%); /* Best Buy navy to blue */
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: #003b64; /* Best Buy navy */
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+            border-bottom: 5px solid #00a651; /* Best Buy accent green */
+        }
+
+        .bestbuy-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .logo-text {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #ffd700; /* Best Buy yellow */
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            height: fit-content;
+            border: 2px solid #00a651; /* Best Buy green */
+        }
+
+        .sidebar h3 {
+            margin-bottom: 15px;
+            color: #003b64; /* Best Buy navy */
+            border-bottom: 3px solid #00a651; /* Best Buy green */
+            padding-bottom: 10px;
+            font-size: 1.4em;
+        }
+
+        .slide-list {
+            list-style: none;
+        }
+
+        .slide-list li {
+            padding: 12px;
+            margin: 8px 0;
+            background: #e6f2ff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid #003b64;
+            font-weight: bold;
+        }
+
+        .slide-list li:hover {
+            background: #cce6ff;
+            transform: translateX(5px);
+            border-left: 4px solid #00a651;
+        }
+
+        .slide-list li.active {
+            background: #003b64;
+            color: white;
+            border-left: 4px solid #ffd700;
+        }
+
+        .presentation-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .slide-container {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+            position: relative;
+            border: 2px solid #00a651;
+        }
+
+        .slide {
+            display: none;
+            height: 100%;
+        }
+
+        .slide.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-title {
+            font-size: 2.5em;
+            color: #003b64; /* Best Buy navy */
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 4px solid #00a651; /* Best Buy green */
+            padding-bottom: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .slide-subtitle {
+            font-size: 1.6em;
+            color: #0066cc; /* Best Buy blue */
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .slide-content {
+            font-size: 1.2em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .key-point {
+            background: linear-gradient(to right, #fff8dc, #ffffe0);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 5px solid #00a651;
+            font-weight: bold;
+            font-size: 1.1em;
+            border: 1px dashed #00a651;
+        }
+
+        .strategy-section {
+            margin: 25px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 5px solid #003b64;
+            border-radius: 0 8px 8px 0;
+            border: 1px solid #d1e7ff;
+        }
+
+        .verified-source {
+            background: #e8f5e9;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 4px solid #00a651;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(to bottom, #ffffff, #f0f8ff);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #00a651;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .metric-value {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #003b64;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            font-size: 1.1em;
+            color: #0066cc;
+            font-weight: bold;
+        }
+
+        .examples-list {
+            list-style-type: none;
+            margin-left: 10px;
+            margin-top: 15px;
+        }
+
+        .examples-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .examples-list li:before {
+            content: "•";
+            color: #00a651;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            font-size: 1.5em;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 15px;
+        }
+
+        .nav-btn {
+            padding: 15px 30px;
+            background: linear-gradient(to bottom, #00a651, #008c45);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn:hover {
+            background: linear-gradient(to bottom, #00c851, #00a651);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .footer {
+            background: #003b64;
+            color: white;
+            text-align: center;
+            padding: 1.2rem;
+            margin-top: auto;
+            border-top: 3px solid #00a651;
+        }
+
+        .confidence-score {
+            background: linear-gradient(135deg, #00a651, #00c851);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .confidence-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .confidence-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .confidence-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .highlight-impact {
+            background: linear-gradient(to right, #fff3cd, #ffeaa7);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 5px solid #ffc107;
+            font-weight: bold;
+            font-size: 1.1em;
+            border: 1px solid #ffeaa7;
+        }
+
+        .real-example {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 5px solid #2196f3;
+            font-style: italic;
+        }
+
+        .financial-data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+
+        .financial-data-table th {
+            background-color: #003b64;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .financial-data-table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .financial-data-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .financial-data-table tr:hover {
+            background-color: #e8f4f8;
+        }
+
+        .data-loading {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2em;
+            color: #003b64;
+        }
+
+        .recommendation-rank {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            border-left: 5px solid #00a651;
+        }
+
+        .rank-number {
+            background: #00a651;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .rank-content {
+            flex-grow: 1;
+        }
+
+        .roi-indicator {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+
+        .implementation-timeline {
+            display: flex;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f0f8ff;
+            border-radius: 8px;
+            border: 1px solid #00a651;
+        }
+
+        .timeline-step {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-right: 1px solid #ccc;
+        }
+
+        .timeline-step:last-child {
+            border-right: none;
+        }
+
+        .timeline-step h4 {
+            color: #003b64;
+            margin-bottom: 5px;
+        }
+
+        .timeline-step .step-duration {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .impact-chart {
+            height: 200px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 10px;
+        }
+
+        .impact-bar {
+            width: 40px;
+            background: #00a651;
+            margin: 0 5px;
+            border-radius: 4px 4px 0 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .slide-title {
+                font-size: 2em;
+            }
+            
+            .recommendation-rank {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .rank-number {
+                margin-bottom: 10px;
+            }
+        }
+        
+        /* Editor Controls */
+        .editor-controls {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .edit-mode {
+            outline: 2px solid #00a651;
+            padding: 5px;
+            margin: 2px 0;
+            cursor: pointer;
+        }
+        
+        .edit-mode:hover {
+            background-color: #f0f8ff;
+        }
+        
+        .save-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #4CAF50;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            z-index: 2000;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="editor-controls">
+        <button id="editModeToggle" onclick="toggleEditMode()">Edit Mode: OFF</button>
+        <button onclick="saveChanges()">Save Changes</button>
+        <button onclick="loadConfig()">Reload Config</button>
+    </div>
+    
+    <div class="header">
+        <div class="bestbuy-logo">
+            <div class="logo-text">BEST BUY</div>
+            <div style="font-size: 1.5em; color: #ffd700;">®</div>
+        </div>
+        <h1 id="presentationTitle">Enhanced Operating Income Optimization Strategies for Fortune 500 Retailers</h1>
+        <p id="presentationDescription">Financial Data Integration & Actionable Insights - Ranked Recommendations</p>
+    </div>
+    
+    <div class="container">
+        <div class="sidebar">
+            <h3>Presentation Outline</h3>
+            <ul class="slide-list" id="slideList">
+                <!-- Will be populated by JavaScript -->
+            </ul>
+        </div>
+        
+        <div class="presentation-area">
+            <div class="slide-container">
+                <div id="slidesContainer">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" id="prevBtn" onclick="prevSlide()">Previous</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p id="footerText">Enhanced Operating Income Optimization Strategies for Fortune 500 Retailers © 2026</p>
+    </div>
+    
+    <div class="save-message" id="saveMessage">Changes saved successfully!</div>
+
+    <script>
+        let currentSlide = 0;
+        let totalSlides = 0;
+        let config = {};
+        let editMode = false;
+        let originalContent = {};
+
+        async function loadConfig() {
+            try {
+                const response = await fetch('config.json');
+                config = await response.json();
+                
+                // Update presentation title and description
+                document.getElementById('presentationTitle').textContent = config.presentation.title;
+                document.getElementById('presentationDescription').textContent = config.presentation.description;
+                document.getElementById('footerText').textContent = `${config.presentation.title} © ${new Date().getFullYear()}`;
+                
+                // Build slides and navigation
+                buildPresentation();
+            } catch (error) {
+                console.error('Error loading configuration:', error);
+            }
+        }
+
+        function buildPresentation() {
+            // Build slide navigation
+            const slideList = document.getElementById('slideList');
+            slideList.innerHTML = '';
+            
+            config.slides.forEach((slide, index) => {
+                const li = document.createElement('li');
+                li.textContent = slide.title;
+                li.onclick = () => showSlide(index);
+                li.id = `nav-${slide.id}`;
+                slideList.appendChild(li);
+            });
+            
+            // Build slides
+            const slidesContainer = document.getElementById('slidesContainer');
+            slidesContainer.innerHTML = '';
+            
+            config.slides.forEach((slide, index) => {
+                const slideDiv = document.createElement('div');
+                slideDiv.className = 'slide';
+                slideDiv.id = slide.id;
+                
+                // Build slide content
+                let contentHTML = '';
+                
+                // Add title
+                contentHTML += `<h1 class="slide-title">${slide.title}</h1>`;
+                
+                // Add subtitle if exists
+                if (slide.subtitle && slide.subtitle !== '') {
+                    contentHTML += `<h2 class="slide-subtitle">${slide.subtitle}</h2>`;
+                }
+                
+                // Add content sections
+                contentHTML += '<div class="slide-content">';
+                
+                slide.content.forEach(item => {
+                    switch(item.type) {
+                        case 'paragraph':
+                            contentHTML += `<p>${item.text}</p>`;
+                            break;
+                        case 'key-point':
+                            contentHTML += `<div class="key-point">${item.text}</div>`;
+                            break;
+                        case 'highlight-impact':
+                            contentHTML += `<div class="highlight-impact">${item.text}</div>`;
+                            break;
+                        case 'strategy-section':
+                            contentHTML += `<div class="strategy-section">`;
+                            if (item.subtitle) {
+                                contentHTML += `<h3 class="slide-subtitle">${item.subtitle}</h3>`;
+                            }
+                            
+                            if (item.items) {
+                                contentHTML += `<ul class="examples-list">`;
+                                item.items.forEach(listItem => {
+                                    contentHTML += `<li>${listItem}</li>`;
+                                });
+                                contentHTML += `</ul>`;
+                            }
+                            
+                            if (item.metrics) {
+                                contentHTML += `<div class="metrics-grid">`;
+                                item.metrics.forEach(metric => {
+                                    contentHTML += `
+                                        <div class="metric-card">
+                                            <div class="metric-value">${metric.value}</div>
+                                            <div class="metric-label">${metric.label}</div>
+                                        </div>
+                                    `;
+                                });
+                                contentHTML += `</div>`;
+                            }
+                            
+                            if (item.recommendations) {
+                                item.recommendations.forEach(rec => {
+                                    contentHTML += `
+                                        <div class="recommendation-rank">
+                                            <div class="rank-number">${rec.rank}</div>
+                                            <div class="rank-content">
+                                                <strong>${rec.title}</strong>
+                                                <p>${rec.description}</p>
+                                                <span class="roi-indicator">${rec.roi}</span>
+                                            </div>
+                                        </div>
+                                    `;
+                                });
+                            }
+                            
+                            if (item.timeline) {
+                                contentHTML += `<div class="implementation-timeline">`;
+                                item.timeline.forEach(step => {
+                                    contentHTML += `
+                                        <div class="timeline-step">
+                                            <h4>${step.period}</h4>
+                                            <div class="step-duration">${step.activity}</div>
+                                        </div>
+                                    `;
+                                });
+                                contentHTML += `</div>`;
+                            }
+                            
+                            if (item.table) {
+                                contentHTML += `<table class="financial-data-table">`;
+                                
+                                if (item.table.headers) {
+                                    contentHTML += `<thead><tr>`;
+                                    item.table.headers.forEach(header => {
+                                        contentHTML += `<th>${header}</th>`;
+                                    });
+                                    contentHTML += `</tr></thead>`;
+                                }
+                                
+                                contentHTML += `<tbody>`;
+                                if (item.table.rows) {
+                                    item.table.rows.forEach(row => {
+                                        contentHTML += `<tr>`;
+                                        row.forEach(cell => {
+                                            contentHTML += `<td>${cell}</td>`;
+                                        });
+                                        contentHTML += `</tr>`;
+                                    });
+                                }
+                                contentHTML += `</tbody>`;
+                                
+                                contentHTML += `</table>`;
+                                
+                                if (item.table.note) {
+                                    contentHTML += `<p style="margin-top: 20px; font-style: italic;">${item.table.note}</p>`;
+                                }
+                            }
+                            
+                            contentHTML += `</div>`;
+                            break;
+                        case 'verified-source':
+                            contentHTML += `<div class="verified-source">${item.text}</div>`;
+                            break;
+                        case 'real-example':
+                            contentHTML += `<div class="real-example">${item.text}</div>`;
+                            break;
+                        case 'confidence-score':
+                            contentHTML += `<div class="confidence-score">${item.text}</div>`;
+                            break;
+                        case 'confidence-details':
+                            contentHTML += `<div class="confidence-details">`;
+                            item.scores.forEach(score => {
+                                contentHTML += `
+                                    <div class="confidence-item">
+                                        <div class="confidence-value">${score.value}</div>
+                                        <div>${score.label}</div>
+                                    </div>
+                                `;
+                            });
+                            contentHTML += `</div>`;
+                            break;
+                    }
+                });
+                
+                contentHTML += '</div>';
+                slideDiv.innerHTML = contentHTML;
+                
+                slidesContainer.appendChild(slideDiv);
+            });
+            
+            totalSlides = config.slides.length;
+            
+            // Initialize first slide
+            showSlide(0);
+            
+            // Store original content for editing
+            storeOriginalContent();
+        }
+
+        function storeOriginalContent() {
+            originalContent = JSON.parse(JSON.stringify(config));
+        }
+
+        function toggleEditMode() {
+            editMode = !editMode;
+            const button = document.getElementById('editModeToggle');
+            button.textContent = `Edit Mode: ${editMode ? 'ON' : 'OFF'}`;
+            
+            if (editMode) {
+                enableEditing();
+            } else {
+                disableEditing();
+            }
+        }
+
+        function enableEditing() {
+            // Add edit classes to all content elements
+            document.querySelectorAll('.slide-title, .slide-subtitle, .slide-content p, .key-point, .highlight-impact, .strategy-section h3, .strategy-section .examples-list li, .verified-source, .real-example').forEach(el => {
+                el.classList.add('edit-mode');
+                el.setAttribute('contenteditable', 'true');
+                
+                // Store the original text
+                el.dataset.original = el.textContent;
+                
+                // Add event listener to track changes
+                el.addEventListener('blur', function() {
+                    updateConfigFromElement(this);
+                });
+            });
+        }
+
+        function disableEditing() {
+            // Remove edit classes from all content elements
+            document.querySelectorAll('.edit-mode').forEach(el => {
+                el.classList.remove('edit-mode');
+                el.removeAttribute('contenteditable');
+                
+                // Remove event listeners
+                el.removeEventListener('blur', updateConfigFromElement);
+            });
+        }
+
+        function updateConfigFromElement(element) {
+            const text = element.textContent;
+            const originalText = element.dataset.original;
+            
+            if (text !== originalText) {
+                // Find which slide and content this element belongs to
+                const slideElement = element.closest('.slide');
+                const slideId = slideElement.id;
+                
+                // Find the slide in config
+                const slideIndex = config.slides.findIndex(slide => slide.id === slideId);
+                
+                if (slideIndex !== -1) {
+                    // Update the config based on element type
+                    const slide = config.slides[slideIndex];
+                    
+                    // Determine which content item this element corresponds to
+                    // This is a simplified approach - in a real implementation you'd have more robust identification
+                    for (let i = 0; i < slide.content.length; i++) {
+                        const contentItem = slide.content[i];
+                        
+                        // Check if this content item matches our element
+                        if (matchesElement(contentItem, element)) {
+                            // Update the text based on content type
+                            if (contentItem.type === 'paragraph' || 
+                                contentItem.type === 'key-point' || 
+                                contentItem.type === 'highlight-impact' || 
+                                contentItem.type === 'verified-source' || 
+                                contentItem.type === 'real-example') {
+                                contentItem.text = text;
+                            } else if (contentItem.type === 'strategy-section' && contentItem.subtitle) {
+                                contentItem.subtitle = text;
+                            }
+                            
+                            // Update the original text
+                            element.dataset.original = text;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        function matchesElement(contentItem, element) {
+            // Check if the contentItem's text matches the element's text
+            if (contentItem.text && element.textContent.includes(contentItem.text.substring(0, 20))) {
+                return true;
+            }
+            
+            // Check if it's a subtitle
+            if (contentItem.subtitle && element.textContent.includes(contentItem.subtitle)) {
+                return true;
+            }
+            
+            // Check if it's a list item
+            if (contentItem.items) {
+                for (const item of contentItem.items) {
+                    if (element.textContent.includes(item.substring(0, 20))) {
+                        return true;
+                    }
+                }
+            }
+            
+            return false;
+        }
+
+        function saveChanges() {
+            // Convert config back to JSON and save
+            const configJson = JSON.stringify(config, null, 2);
+            
+            // Create a Blob and download it
+            const blob = new Blob([configJson], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'config.json';
+            document.body.appendChild(a);
+            a.click();
+            
+            // Clean up
+            setTimeout(() => {
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+                
+                // Show save message
+                const msg = document.getElementById('saveMessage');
+                msg.style.display = 'block';
+                setTimeout(() => {
+                    msg.style.display = 'none';
+                }, 2000);
+            }, 100);
+        }
+
+        function showSlide(n) {
+            if (n < 0 || n >= totalSlides) return;
+            
+            const slides = document.getElementsByClassName('slide');
+            const sideItems = document.querySelectorAll('#slideList li');
+            
+            // Hide all slides
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active');
+            }
+            
+            // Remove active class from all sidebar items
+            for (let i = 0; i < sideItems.length; i++) {
+                sideItems[i].classList.remove('active');
+            }
+            
+            // Show current slide
+            slides[n].classList.add('active');
+            sideItems[n].classList.add('active');
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = (n === 0);
+            document.getElementById('nextBtn').disabled = (n === totalSlides - 1);
+            
+            currentSlide = n;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+        
+        // Initialize the presentation when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadConfig();
+        });
+    </script>
+</body>
+</html>

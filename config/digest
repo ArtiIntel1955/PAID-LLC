@@ -1,0 +1,27 @@
+{
+  "enabled": true,
+  "sources": [
+    {
+      "name": "OpenClaw Releases",
+      "url": "https://api.github.com/repos/openclaw/openclaw/releases"
+    },
+    {
+      "name": "AI News - TechCrunch",
+      "url": "https://techcrunch.com/category/artificial-intelligence/feed/"
+    },
+    {
+      "name": "AI News - Ars Technica",
+      "url": "https://arstechnica.com/tag/artificial-intelligence/feed/"
+    },
+    {
+      "name": "AI News - X/Twitter",
+      "url": "https://x.com/search?q=artificial%20intelligence%20OR%20AI%20OR%20machine%20learning%20lang%3Aen&src=typed_query"
+    },
+    {
+      "name": "AI Videos - YouTube",
+      "url": "https://www.youtube.com/feed/trending?gl=US&hl=en&category=28" 
+    }
+  ],
+  "delivery_time": "09:00",
+  "max_items": 10
+}

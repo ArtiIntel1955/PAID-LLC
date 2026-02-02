@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "update_frequency": "every_4_hours",
+  "report_types": [
+    "system_status",
+    "token_usage_summary",
+    "session_activity"
+  ],
+  "delivery_method": "telegram",
+  "telegram_chat_id": 8273779429,
+  "working_hours_only": false,
+  "custom_message_prefix": "OpenClaw Status Update:",
+  "metrics_to_include": [
+    "version",
+    "uptime",
+    "model_used",
+    "tokens_processed",
+    "active_sessions",
+    "recent_activities"
+  ]
+}

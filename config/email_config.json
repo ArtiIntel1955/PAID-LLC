@@ -1,0 +1,11 @@
+{
+  "email": "MyAIEmployee@outlook.com",
+  "password": "fecjxishcgbsokqe",
+  "imap_server": "outlook.office365.com",
+  "smtp_server": "smtp-mail.outlook.com",
+  "imap_port": 993,
+  "smtp_port": 587,
+  "smtp_use_tls": true,
+  "smtp_use_starttls": true,
+  "provider": "outlook_personal"
+}

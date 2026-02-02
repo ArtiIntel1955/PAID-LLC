@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Buy Operating Income Optimization - Executive Summary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #003b64 0%, #0066cc 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: #003b64;
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+            border-bottom: 5px solid #00a651;
+        }
+
+        .bestbuy-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .logo-text {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            height: fit-content;
+            border: 2px solid #00a651;
+        }
+
+        .sidebar h3 {
+            margin-bottom: 15px;
+            color: #003b64;
+            border-bottom: 3px solid #00a651;
+            padding-bottom: 10px;
+            font-size: 1.4em;
+        }
+
+        .slide-list {
+            list-style: none;
+        }
+
+        .slide-list li {
+            padding: 12px;
+            margin: 8px 0;
+            background: #e6f2ff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid #003b64;
+            font-weight: bold;
+        }
+
+        .slide-list li:hover {
+            background: #cce6ff;
+            transform: translateX(5px);
+            border-left: 4px solid #00a651;
+        }
+
+        .slide-list li.active {
+            background: #003b64;
+            color: white;
+            border-left: 4px solid #ffd700;
+        }
+
+        .presentation-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .slide-container {
+            flex: 1;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+            position: relative;
+            border: 2px solid #00a651;
+        }
+
+        .slide {
+            display: none;
+            height: 100%;
+        }
+
+        .slide.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-title {
+            font-size: 2.5em;
+            color: #003b64;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 4px solid #00a651;
+            padding-bottom: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .slide-subtitle {
+            font-size: 1.6em;
+            color: #0066cc;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .slide-content {
+            font-size: 1.2em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .executive-summary {
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #00a651;
+            border-right: 5px solid #00a651;
+        }
+
+        .key-metric {
+            text-align: center;
+            padding: 20px;
+            margin: 15px 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+        }
+
+        .metric-value {
+            font-size: 3em;
+            font-weight: bold;
+            color: #003b64;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 1.1em;
+            color: #0066cc;
+            font-weight: bold;
+        }
+
+        .chart-container {
+            width: 100%;
+            height: 300px;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+            position: relative;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            height: 200px;
+            justify-content: space-around;
+            padding: 20px 0;
+        }
+
+        .bar {
+            width: 40px;
+            background: linear-gradient(to top, #00a651, #00c851);
+            margin: 0 10px;
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            min-height: 10px;
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9em;
+            text-align: center;
+            width: 80px;
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            color: #003b64;
+        }
+
+        .roi-chart {
+            display: flex;
+            align-items: center;
+            height: 200px;
+            padding: 20px 0;
+        }
+
+        .roi-bar {
+            height: 40px;
+            background: linear-gradient(to right, #00a651, #00c851);
+            border-radius: 0 4px 4px 0;
+            position: relative;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            padding-left: 15px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .roi-label {
+            position: absolute;
+            left: -120px;
+            width: 110px;
+            text-align: right;
+            font-weight: bold;
+            color: #003b64;
+        }
+
+        .initiative-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .initiative-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-left: 4px solid #00a651;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .initiative-title {
+            font-weight: bold;
+            color: #003b64;
+            margin-bottom: 5px;
+        }
+
+        .initiative-description {
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        .initiative-metrics {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .metric-box {
+            text-align: center;
+            padding: 8px;
+            background: #e9f7ef;
+            border-radius: 4px;
+            min-width: 80px;
+        }
+
+        .metric-box-value {
+            font-weight: bold;
+            color: #003b64;
+            font-size: 1.1em;
+        }
+
+        .metric-box-label {
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 15px;
+        }
+
+        .nav-btn {
+            padding: 15px 30px;
+            background: linear-gradient(to bottom, #00a651, #008c45);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn:hover {
+            background: linear-gradient(to bottom, #00c851, #00a651);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .footer {
+            background: #003b64;
+            color: white;
+            text-align: center;
+            padding: 1.2rem;
+            margin-top: auto;
+            border-top: 3px solid #00a651;
+        }
+
+        .investment-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .investment-card {
+            background: linear-gradient(to bottom, #ffffff, #f0f8ff);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #00a651;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .investment-value {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #003b64;
+            margin-bottom: 8px;
+        }
+
+        .investment-label {
+            font-size: 1.1em;
+            color: #0066cc;
+            font-weight: bold;
+        }
+
+        .risk-mitigation {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #ffc107;
+            border: 1px solid #ffeaa7;
+        }
+
+        .next-steps {
+            background: #d1ecf1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid #17a2b8;
+            border: 1px solid #bee5eb;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .slide-title {
+                font-size: 2em;
+            }
+            
+            .investment-summary {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="bestbuy-logo">
+            <div class="logo-text">BEST BUY</div>
+            <div style="font-size: 1.5em; color: #ffd700;">®</div>
+        </div>
+        <h1>Operating Income Optimization - Executive Summary</h1>
+        <p>Strategic Initiatives for Enhanced Profitability</p>
+    </div>
+    
+    <div class="container">
+        <div class="sidebar">
+            <h3>Presentation Outline</h3>
+            <ul class="slide-list">
+                <li onclick="showSlide(0)" class="active">Executive Summary</li>
+                <li onclick="showSlide(1)">Market Opportunity</li>
+                <li onclick="showSlide(2)">Strategic Initiatives</li>
+                <li onclick="showSlide(3)">Financial Impact</li>
+                <li onclick="showSlide(4)">Investment Requirements</li>
+                <li onclick="showSlide(5)">Risk Mitigation</li>
+                <li onclick="showSlide(6)">Implementation Roadmap</li>
+                <li onclick="showSlide(7)">Next Steps</li>
+            </ul>
+        </div>
+        
+        <div class="presentation-area">
+            <div class="slide-container">
+                <!-- Slide 1: Executive Summary -->
+                <div class="slide active" id="slide0">
+                    <h1 class="slide-title">Executive Summary</h1>
+                    <div class="slide-content">
+                        <div class="executive-summary">
+                            <h2 style="color: #003b64; margin-bottom: 15px; text-align: center;">Strategic Opportunity</h2>
+                            <p style="text-align: center; font-size: 1.2em; line-height: 1.6;">
+                                Implementation of 10 strategic initiatives to enhance operating income through operational excellence, 
+                                cost optimization, and revenue enhancement. Projected to deliver $1.65B in value over 3 years 
+                                with 825% ROI and 6-8 month payback period.
+                            </p>
+                        </div>
+                        
+                        <div class="investment-summary">
+                            <div class="investment-card">
+                                <div class="investment-value">$1.65B</div>
+                                <div class="investment-label">Total Value Creation</div>
+                            </div>
+                            <div class="investment-card">
+                                <div class="investment-value">825%</div>
+                                <div class="investment-label">Return on Investment</div>
+                            </div>
+                            <div class="investment-card">
+                                <div class="investment-value">6-8 mo</div>
+                                <div class="investment-label">Payback Period</div>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin: 30px 0;">
+                            <h3 style="color: #003b64; margin-bottom: 20px;">Key Performance Indicators</h3>
+                            <div class="key-metric">
+                                <div class="metric-value">15-30%</div>
+                                <div class="metric-label">Operating Margin Improvement</div>
+                            </div>
+                            <div class="key-metric">
+                                <div class="metric-value">$200M</div>
+                                <div class="metric-label">Required Investment</div>
+                            </div>
+                            <div class="key-metric">
+                                <div class="metric-value">36 mo</div>
+                                <div class="metric-label">Implementation Timeline</div>
+                            </div>
+                        </div>
+                        
+                        <div class="next-steps">
+                            <h3 style="color: #003b64; margin-bottom: 15px;">Immediate Actions Required</h3>
+                            <ul style="padding-left: 20px;">
+                                <li style="margin-bottom: 10px;">Executive approval for Phase 1 initiatives</li>
+                                <li style="margin-bottom: 10px;">Resource allocation for implementation team</li>
+                                <li style="margin-bottom: 10px;">Vendor selection for technology components</li>
+                                <li>Timeline confirmation and milestone establishment</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 2: Market Opportunity -->
+                <div class="slide" id="slide1">
+                    <h1 class="slide-title">Market Opportunity</h1>
+                    <div class="slide-content">
+                        <div class="executive-summary">
+                            <h2 style="color: #003b64; margin-bottom: 15px;">Competitive Landscape</h2>
+                            <p>
+                                Fortune 500 retailers face increasing pressure to optimize margins while maintaining customer experience. 
+                                Best Buy has an opportunity to lead the industry through strategic operational improvements that competitors 
+                                have yet to fully realize.
+                            </p>
+                        </div>
+                        
+                        <h3 style="color: #003b64; margin: 20px 0;">Market Drivers</h3>
+                        <div class="initiative-list">
+                            <div class="initiative-item">
+                                <div class="initiative-title">Digital Transformation Imperative</div>
+                                <div class="initiative-description">
+                                    Omnichannel expectations require operational excellence across all touchpoints to maintain competitive advantage.
+                                </div>
+                                <div class="initiative-metrics">
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">25%</div>
+                                        <div class="metric-box-label">Avg. Online Growth</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">15%</div>
+                                        <div class="metric-box-label">Cost Reduction Target</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="initiative-item">
+                                <div class="initiative-title">Operational Efficiency Demands</div>
+                                <div class="initiative-description">
+                                    Labor shortages and inflation necessitate improved productivity and automation adoption.
+                                </div>
+                                <div class="initiative-metrics">
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">30%</div>
+                                        <div class="metric-box-label">Productivity Target</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">20%</div>
+                                        <div class="metric-box-label">Cost Containment</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="initiative-item">
+                                <div class="initiative-title">Supply Chain Resilience</div>
+                                <div class="initiative-description">
+                                    Disruption risks require sophisticated supply chain management and inventory optimization.
+                                </div>
+                                <div class="initiative-metrics">
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">40%</div>
+                                        <div class="metric-box-label">Inventory Turn Improvement</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">95%</div>
+                                        <div class="metric-box-label">Service Level Target</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3 style="color: #003b64; margin: 20px 0;">Financial Benchmarking</h3>
+                        <div class="chart-container">
+                            <h4 style="text-align: center; margin-bottom: 15px; color: #003b64;">Operating Margins Comparison</h4>
+                            <div class="bar-chart">
+                                <div>
+                                    <div class="bar" style="height: 180px;">
+                                        <div class="bar-value">7.5%</div>
+                                    </div>
+                                    <div class="bar-label">Current</div>
+                                </div>
+                                <div>
+                                    <div class="bar" style="height: 220px;">
+                                        <div class="bar-value">9.8%</div>
+                                    </div>
+                                    <div class="bar-label">Target</div>
+                                </div>
+                                <div>
+                                    <div class="bar" style="height: 160px;">
+                                        <div class="bar-value">6.2%</div>
+                                    </div>
+                                    <div class="bar-label">Competitor Avg</div>
+                                </div>
+                                <div>
+                                    <div class="bar" style="height: 250px;">
+                                        <div class="bar-value">11.5%</div>
+                                    </div>
+                                    <div class="bar-label">Industry Leader</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 3: Strategic Initiatives -->
+                <div class="slide" id="slide2">
+                    <h1 class="slide-title">Strategic Initiatives</h1>
+                    <div class="slide-content">
+                        <div class="executive-summary">
+                            <h2 style="color: #003b64; margin-bottom: 15px;">Tiered Implementation Approach</h2>
+                            <p>
+                                Three-phase approach to ensure rapid value capture while building organizational capability. 
+                                Phase 1 focuses on quick wins with immediate ROI, Phase 2 addresses core operational improvements, 
+                                and Phase 3 implements transformational changes.
+                            </p>
+                        </div>
+                        
+                        <h3 style="color: #003b64; margin: 20px 0;">Phase 1: Quick Wins (Months 1-3)</h3>
+                        <div class="initiative-list">
+                            <div class="initiative-item">
+                                <div class="initiative-title">Energy Efficiency & Cost Reduction</div>
+                                <div class="initiative-description">
+                                    LED conversion and HVAC optimization across all stores and distribution centers.
+                                </div>
+                                <div class="initiative-metrics">
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">$45M</div>
+                                        <div class="metric-box-label">Annual Savings</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">6 mo</div>
+                                        <div class="metric-box-label">Payback</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">High</div>
+                                        <div class="metric-box-label">Certainty</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="initiative-item">
+                                <div class="initiative-title">Supplier Contract Optimization</div>
+                                <div class="initiative-description">
+                                    Renegotiation of key supplier agreements to achieve cost savings without impacting quality.
+                                </div>
+                                <div class="initiative-metrics">
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">$60M</div>
+                                        <div class="metric-box-label">Annual Savings</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">3 mo</div>
+                                        <div class="metric-box-label">Payback</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">High</div>
+                                        <div class="metric-box-label">Certainty</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="initiative-item">
+                                <div class="initiative-title">Process Automation (RPA)</div>
+                                <div class="initiative-description">
+                                    Implementation of robotic process automation for high-volume, rule-based processes.
+                                </div>
+                                <div class="initiative-metrics">
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">$35M</div>
+                                        <div class="metric-box-label">Annual Savings</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">8 mo</div>
+                                        <div class="metric-box-label">Payback</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">Medium</div>
+                                        <div class="metric-box-label">Certainty</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3 style="color: #003b64; margin: 20px 0;">Phases 2-3: Transformational Impact</h3>
+                        <div class="chart-container">
+                            <h4 style="text-align: center; margin-bottom: 15px; color: #003b64;">ROI by Initiative Category</h4>
+                            <div class="roi-chart">
+                                <div style="width: 100%;">
+                                    <div style="position: relative; height: 180px;">
+                                        <div class="roi-bar" style="width: 70%; top: 0;">
+                                            <div class="roi-label">Inventory Optimization</div>
+                                            <div style="margin-left: 10px;">40% ROI</div>
+                                        </div>
+                                        <div class="roi-bar" style="width: 65%; top: 50px;">
+                                            <div class="roi-label">Supply Chain</div>
+                                            <div style="margin-left: 10px;">35% ROI</div>
+                                        </div>
+                                        <div class="roi-bar" style="width: 60%; top: 100px;">
+                                            <div class="roi-label">E-commerce</div>
+                                            <div style="margin-left: 10px;">30% ROI</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 4: Financial Impact -->
+                <div class="slide" id="slide3">
+                    <h1 class="slide-title">Financial Impact</h1>
+                    <div class="slide-content">
+                        <div class="executive-summary">
+                            <h2 style="color: #003b64; margin-bottom: 15px;">Three-Year Value Creation</h2>
+                            <p>
+                                Comprehensive financial model projecting $1.65B in value creation through cost reduction, 
+                                revenue enhancement, and operational efficiency gains. Conservative estimates based on 
+                                industry benchmarks and proven implementations at peer organizations.
+                            </p>
+                        </div>
+                        
+                        <div class="investment-summary">
+                            <div class="investment-card">
+                                <div class="investment-value">$290M</div>
+                                <div class="investment-label">Year 1 Impact</div>
+                            </div>
+                            <div class="investment-card">
+                                <div class="investment-value">$580M</div>
+                                <div class="investment-label">Year 2 Impact</div>
+                            </div>
+                            <div class="investment-card">
+                                <div class="investment-value">$780M</div>
+                                <div class="investment-label">Year 3 Impact</div>
+                            </div>
+                        </div>
+                        
+                        <h3 style="color: #003b64; margin: 20px 0;">Value Creation Breakdown</h3>
+                        <div class="chart-container">
+                            <h4 style="text-align: center; margin-bottom: 15px; color: #003b64;">Cumulative Financial Impact</h4>
+                            <div class="bar-chart">
+                                <div>
+                                    <div class="bar" style="height: 80px;">
+                                        <div class="bar-value">$290M</div>
+                                    </div>
+                                    <div class="bar-label">Year 1</div>
+                                </div>
+                                <div>
+                                    <div class="bar" style="height: 160px;">
+                                        <div class="bar-value">$580M</div>
+                                    </div>
+                                    <div class="bar-label">Year 2</div>
+                                </div>
+                                <div>
+                                    <div class="bar" style="height: 220px;">
+                                        <div class="bar-value">$780M</div>
+                                    </div>
+                                    <div class="bar-label">Year 3</div>
+                                </div>
+                                <div>
+                                    <div class="bar" style="height: 240px; background: linear-gradient(to top, #0066cc, #0088cc);">
+                                        <div class="bar-value">$1.65B</div>
+                                    </div>
+                                    <div class="bar-label">Total</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3 style="color: #003b64; margin: 20px 0;">Impact Categories</h3>
+                        <div class="initiative-list">
+                            <div class="initiative-item">
+                                <div class="initiative-title">Cost Reduction</div>
+                                <div class="initiative-description">
+                                    Systematic reduction of operational expenses through efficiency improvements and cost optimization.
+                                </div>
+                                <div class="initiative-metrics">
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">$750M</div>
+                                        <div class="metric-box-label">3-Year Value</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">45%</div>
+                                        <div class="metric-box-label">of Total</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="initiative-item">
+                                <div class="initiative-title">Revenue Enhancement</div>
+                                <div class="initiative-description">
+                                    Increased sales through improved customer experience, conversion optimization, and market expansion.
+                                </div>
+                                <div class="initiative-metrics">
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">$540M</div>
+                                        <div class="metric-box-label">3-Year Value</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">33%</div>
+                                        <div class="metric-box-label">of Total</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="initiative-item">
+                                <div class="initiative-title">Operational Efficiency</div>
+                                <div class="initiative-description">
+                                    Improved productivity and asset utilization driving profit improvement.
+                                </div>
+                                <div class="initiative-metrics">
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">$360M</div>
+                                        <div class="metric-box-label">3-Year Value</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">22%</div>
+                                        <div class="metric-box-label">of Total</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 5: Investment Requirements -->
+                <div class="slide" id="slide4">
+                    <h1 class="slide-title">Investment Requirements</h1>
+                    <div class="slide-content">
+                        <div class="executive-summary">
+                            <h2 style="color: #003b64; margin-bottom: 15px;">Capital Allocation Strategy</h2>
+                            <p>
+                                Total investment requirement of $200M over 3 years with staged deployment aligned to 
+                                implementation phases. Returns begin generating within 6 months with full value 
+                                realization by month 18.
+                            </p>
+                        </div>
+                        
+                        <div class="investment-summary">
+                            <div class="investment-card">
+                                <div class="investment-value">$200M</div>
+                                <div class="investment-label">Total Investment</div>
+                            </div>
+                            <div class="investment-card">
+                                <div class="investment-value">825%</div>
+                                <div class="investment-label">ROI</div>
+                            </div>
+                            <div class="investment-card">
+                                <div class="investment-value">$8.25</div>
+                                <div class="investment-label">Return per Dollar Invested</div>
+                            </div>
+                        </div>
+                        
+                        <h3 style="color: #003b64; margin: 20px 0;">Investment Timeline</h3>
+                        <div class="chart-container">
+                            <h4 style="text-align: center; margin-bottom: 15px; color: #003b64;">Investment Deployment by Year</h4>
+                            <div class="bar-chart">
+                                <div>
+                                    <div class="bar" style="height: 120px;">
+                                        <div class="bar-value">$90M</div>
+                                    </div>
+                                    <div class="bar-label">Year 1</div>
+                                </div>
+                                <div>
+                                    <div class="bar" style="height: 70px;">
+                                        <div class="bar-value">$70M</div>
+                                    </div>
+                                    <div class="bar-label">Year 2</div>
+                                </div>
+                                <div>
+                                    <div class="bar" style="height: 40px;">
+                                        <div class="bar-value">$40M</div>
+                                    </div>
+                                    <div class="bar-label">Year 3</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3 style="color: #003b64; margin: 20px 0;">Investment Categories</h3>
+                        <div class="initiative-list">
+                            <div class="initiative-item">
+                                <div class="initiative-title">Technology & Infrastructure</div>
+                                <div class="initiative-description">
+                                    Software licenses, hardware, and platform implementations for automation and analytics.
+                                </div>
+                                <div class="initiative-metrics">
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">$85M</div>
+                                        <div class="metric-box-label">Investment</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">43%</div>
+                                        <div class="metric-box-label">of Total</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">35%</div>
+                                        <div class="metric-box-label">of Value</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="initiative-item">
+                                <div class="initiative-title">Process Redesign & Training</div>
+                                <div class="initiative-description">
+                                    Organizational change management and capability building initiatives.
+                                </div>
+                                <div class="initiative-metrics">
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">$60M</div>
+                                        <div class="metric-box-label">Investment</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">30%</div>
+                                        <div class="metric-box-label">of Total</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">25%</div>
+                                        <div class="metric-box-label">of Value</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="initiative-item">
+                                <div class="initiative-title">Physical Infrastructure</div>
+                                <div class="initiative-description">
+                                    Energy efficiency upgrades, facility modifications, and equipment replacements.
+                                </div>
+                                <div class="initiative-metrics">
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">$55M</div>
+                                        <div class="metric-box-label">Investment</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">27%</div>
+                                        <div class="metric-box-label">of Total</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">40%</div>
+                                        <div class="metric-box-label">of Value</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 6: Risk Mitigation -->
+                <div class="slide" id="slide5">
+                    <h1 class="slide-title">Risk Mitigation</h1>
+                    <div class="slide-content">
+                        <div class="executive-summary">
+                            <h2 style="color: #003b64; margin-bottom: 15px;">Comprehensive Risk Management</h2>
+                            <p>
+                                Proactive risk identification and mitigation strategies ensure successful implementation 
+                                and value realization. Each initiative includes specific controls and contingency plans.
+                            </p>
+                        </div>
+                        
+                        <div class="risk-mitigation">
+                            <h3 style="color: #003b64; margin-bottom: 15px;">Primary Risk Factors</h3>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
+                                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #ffc107;">
+                                    <h4 style="color: #003b64; margin-bottom: 10px;">Execution Risk</h4>
+                                    <p>Implementation complexity and resource constraints could delay value realization.</p>
+                                </div>
+                                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #ffc107;">
+                                    <h4 style="color: #003b64; margin-bottom: 10px;">Market Risk</h4>
+                                    <p>External market conditions could impact projected benefits.</p>
+                                </div>
+                                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #ffc107;">
+                                    <h4 style="color: #003b64; margin-bottom: 10px;">Technology Risk</h4>
+                                    <p>System integration challenges could affect automation benefits.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3 style="color: #003b64; margin: 20px 0;">Mitigation Strategies</h3>
+                        <div class="initiative-list">
+                            <div class="initiative-item">
+                                <div class="initiative-title">Phased Implementation</div>
+                                <div class="initiative-description">
+                                    Staged deployment with proven quick wins funding larger initiatives reduces execution risk.
+                                </div>
+                            </div>
+                            
+                            <div class="initiative-item">
+                                <div class="initiative-title">Conservative Projections</div>
+                                <div class="initiative-description">
+                                    Financial models based on industry benchmarks with 20% buffer for market variability.
+                                </div>
+                            </div>
+                            
+                            <div class="initiative-item">
+                                <div class="initiative-title">Proven Technology Partners</div>
+                                <div class="initiative-description">
+                                    Engagement of established vendors with retail industry expertise minimizes technology risk.
+                                </div>
+                            </div>
+                            
+                            <div class="initiative-item">
+                                <div class="initiative-title">Dedicated Program Office</div>
+                                <div class="initiative-description">
+                                    Centralized governance and accountability ensures coordinated execution across initiatives.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3 style="color: #003b64; margin: 20px 0;">Success Metrics</h3>
+                        <div class="chart-container">
+                            <h4 style="text-align: center; margin-bottom: 15px; color: #003b64;">Key Performance Indicators</h4>
+                            <div class="roi-chart">
+                                <div style="width: 100%;">
+                                    <div style="position: relative; height: 200px;">
+                                        <div class="roi-bar" style="width: 85%; top: 0;">
+                                            <div class="roi-label">ROI Achievement</div>
+                                            <div style="margin-left: 10px;">85%+ Target</div>
+                                        </div>
+                                        <div class="roi-bar" style="width: 90%; top: 50px;">
+                                            <div class="roi-label">Timeline Adherence</div>
+                                            <div style="margin-left: 10px;">90%+ Target</div>
+                                        </div>
+                                        <div class="roi-bar" style="width: 80%; top: 100px;">
+                                            <div class="roi-label">Budget Compliance</div>
+                                            <div style="margin-left: 10px;">80%+ Target</div>
+                                        </div>
+                                        <div class="roi-bar" style="width: 95%; top: 150px;">
+                                            <div class="roi-label">Quality Standards</div>
+                                            <div style="margin-left: 10px;">95%+ Target</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 7: Implementation Roadmap -->
+                <div class="slide" id="slide6">
+                    <h1 class="slide-title">Implementation Roadmap</h1>
+                    <div class="slide-content">
+                        <div class="executive-summary">
+                            <h2 style="color: #003b64; margin-bottom: 15px;">Structured Execution Plan</h2>
+                            <p>
+                                36-month implementation timeline with clear milestones, governance structure, and 
+                                accountability measures. Phased approach ensures continuous value delivery while 
+                                building organizational capability.
+                            </p>
+                        </div>
+                        
+                        <h3 style="color: #003b64; margin: 20px 0;">Phase 1: Foundation (Months 1-9)</h3>
+                        <div style="background: white; padding: 20px; border-radius: 8px; margin: 15px 0; border: 1px solid #e0e0e0;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: bold; color: #003b64;">
+                                <span>Quick Wins Implementation</span>
+                                <span>Months 1-3</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: bold; color: #003b64;">
+                                <span>Core Process Redesign</span>
+                                <span>Months 4-6</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: bold; color: #003b64;">
+                                <span>Technology Platform Setup</span>
+                                <span>Months 7-9</span>
+                            </div>
+                        </div>
+                        
+                        <h3 style="color: #003b64; margin: 20px 0;">Phase 2: Acceleration (Months 10-24)</h3>
+                        <div style="background: white; padding: 20px; border-radius: 8px; margin: 15px 0; border: 1px solid #e0e0e0;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: bold; color: #003b64;">
+                                <span>Automation Rollout</span>
+                                <span>Months 10-15</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: bold; color: #003b64;">
+                                <span>Supply Chain Optimization</span>
+                                <span>Months 16-20</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: bold; color: #003b64;">
+                                <span>Customer Experience Enhancement</span>
+                                <span>Months 21-24</span>
+                            </div>
+                        </div>
+                        
+                        <h3 style="color: #003b64; margin: 20px 0;">Phase 3: Transformation (Months 25-36)</h3>
+                        <div style="background: white; padding: 20px; border-radius: 8px; margin: 15px 0; border: 1px solid #e0e0e0;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: bold; color: #003b64;">
+                                <span>Advanced Analytics Deployment</span>
+                                <span>Months 25-30</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: bold; color: #003b64;">
+                                <span>Organizational Capability Building</span>
+                                <span>Months 31-36</span>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <h4 style="text-align: center; margin-bottom: 15px; color: #003b64;">Value Accrual Timeline</h4>
+                            <div style="height: 200px; display: flex; align-items: flex-end; justify-content: space-around; padding: 20px;">
+                                <div style="text-align: center;">
+                                    <div style="height: 40px; background: #00a651; width: 30px; margin: 0 auto 10px; border-radius: 4px 4px 0 0;"></div>
+                                    <div style="font-size: 0.8em;">Y1 Q1</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="height: 70px; background: #00a651; width: 30px; margin: 0 auto 10px; border-radius: 4px 4px 0 0;"></div>
+                                    <div style="font-size: 0.8em;">Y1 Q2</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="height: 100px; background: #00a651; width: 30px; margin: 0 auto 10px; border-radius: 4px 4px 0 0;"></div>
+                                    <div style="font-size: 0.8em;">Y1 Q3</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="height: 130px; background: #00a651; width: 30px; margin: 0 auto 10px; border-radius: 4px 4px 0 0;"></div>
+                                    <div style="font-size: 0.8em;">Y1 Q4</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="height: 160px; background: #00a651; width: 30px; margin: 0 auto 10px; border-radius: 4px 4px 0 0;"></div>
+                                    <div style="font-size: 0.8em;">Y2 Q1</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="height: 190px; background: #00a651; width: 30px; margin: 0 auto 10px; border-radius: 4px 4px 0 0;"></div>
+                                    <div style="font-size: 0.8em;">Y2 Q2</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="height: 220px; background: #00a651; width: 30px; margin: 0 auto 10px; border-radius: 4px 4px 0 0;"></div>
+                                    <div style="font-size: 0.8em;">Y2 Q3</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="height: 240px; background: #00a651; width: 30px; margin: 0 auto 10px; border-radius: 4px 4px 0 0;"></div>
+                                    <div style="font-size: 0.8em;">Y2 Q4</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="height: 260px; background: #00a651; width: 30px; margin: 0 auto 10px; border-radius: 4px 4px 0 0;"></div>
+                                    <div style="font-size: 0.8em;">Y3 Q1</div>
+                                </div>
+                                <div style="text-align: center;">
+                                    <div style="height: 270px; background: #00a651; width: 30px; margin: 0 auto 10px; border-radius: 4px 4px 0 0;"></div>
+                                    <div style="font-size: 0.8em;">Y3 Q2</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 8: Next Steps -->
+                <div class="slide" id="slide7">
+                    <h1 class="slide-title">Next Steps</h1>
+                    <div class="slide-content">
+                        <div class="executive-summary">
+                            <h2 style="color: #003b64; margin-bottom: 15px;">Immediate Actions Required</h2>
+                            <p>
+                                Board approval and resource allocation required to initiate Phase 1 activities. 
+                                Timeline sensitivity demands immediate commitment to capture first-mover advantages.
+                            </p>
+                        </div>
+                        
+                        <h3 style="color: #003b64; margin: 20px 0;">Board Approval Items</h3>
+                        <div class="initiative-list">
+                            <div class="initiative-item">
+                                <div class="initiative-title">Investment Authorization</div>
+                                <div class="initiative-description">
+                                    Approval for $200M capital allocation across 3-year implementation period.
+                                </div>
+                                <div class="initiative-metrics">
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">Critical</div>
+                                        <div class="metric-box-label">Priority</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">Immediate</div>
+                                        <div class="metric-box-label">Timeline</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="initiative-item">
+                                <div class="initiative-title">Governance Structure</div>
+                                <div class="initiative-description">
+                                    Establishment of Program Management Office with executive sponsorship.
+                                </div>
+                                <div class="initiative-metrics">
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">Critical</div>
+                                        <div class="metric-box-label">Priority</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">Week 2</div>
+                                        <div class="metric-box-label">Timeline</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="initiative-item">
+                                <div class="initiative-title">Resource Allocation</div>
+                                <div class="initiative-description">
+                                    Dedicated team assignment for initiative leadership and execution.
+                                </div>
+                                <div class="initiative-metrics">
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">High</div>
+                                        <div class="metric-box-label">Priority</div>
+                                    </div>
+                                    <div class="metric-box">
+                                        <div class="metric-box-value">Month 1</div>
+                                        <div class="metric-box-label">Timeline</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3 style="color: #003b64; margin: 20px 0;">Expected Outcomes</h3>
+                        <div class="investment-summary">
+                            <div class="investment-card">
+                                <div class="investment-value">15-30%</div>
+                                <div class="investment-label">Operating Margin Improvement</div>
+                            </div>
+                            <div class="investment-card">
+                                <div class="investment-value">$1.65B</div>
+                                <div class="investment-label">Value Creation</div>
+                            </div>
+                            <div class="investment-card">
+                                <div class="investment-value">Industry Leading</div>
+                                <div class="investment-label">Competitive Position</div>
+                            </div>
+                        </div>
+                        
+                        <div class="next-steps">
+                            <h3 style="color: #003b64; margin-bottom: 15px;">Recommendation</h3>
+                            <p>
+                                Proceed with full implementation of strategic initiatives to capture significant value 
+                                creation opportunity. The conservative financial projections, proven implementation 
+                                approach, and strong risk mitigation strategies provide confidence in value delivery. 
+                                Immediate board approval will enable capture of first-mover advantages in the market.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="nav-btn" id="prevBtn" onclick="prevSlide()">Previous</button>
+                <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Best Buy Operating Income Optimization - Executive Summary © 2026</p>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 8;
+
+        function showSlide(n) {
+            const slides = document.getElementsByClassName('slide');
+            const sideItems = document.getElementsByClassName('slide-list')[0].getElementsByTagName('li');
+            
+            // Hide all slides
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active');
+            }
+            
+            // Remove active class from all sidebar items
+            for (let i = 0; i < sideItems.length; i++) {
+                sideItems[i].classList.remove('active');
+            }
+            
+            // Show current slide
+            slides[n].classList.add('active');
+            sideItems[n].classList.add('active');
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = (n === 0);
+            document.getElementById('nextBtn').disabled = (n === totalSlides - 1);
+            
+            currentSlide = n;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+
+        // Initialize the presentation
+        showSlide(0);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+    </script>
+</body>
+</html>
