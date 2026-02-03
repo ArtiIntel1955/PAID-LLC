@@ -19,9 +19,11 @@ async def send_daily_ai_news():
             news_content = get_alternative_news()
         
         # Print the news content so OpenClaw can capture it and send via Telegram
-        print(f"TELEGRAM_MESSAGE: {news_content}")
+        # Encode and decode to handle special characters properly
+        encoded_content = news_content.encode('utf-8', errors='replace').decode('utf-8')
+        print(f"TELEGRAM_MESSAGE: {encoded_content}")
         
-        return news_content
+        return encoded_content
         
     except Exception as e:
         error_msg = f"Error in daily AI news: {str(e)}"
@@ -40,4 +42,5 @@ if __name__ == "__main__":
         os.system('chcp 65001 > nul')
     
     news = get_daily_ai_news()
-    print(news.encode('utf-8', errors='replace').decode('utf-8'))
+    encoded_news = news.encode('utf-8', errors='replace').decode('utf-8')
+    print(encoded_news)

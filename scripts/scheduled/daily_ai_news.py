@@ -110,4 +110,14 @@ def get_alternative_news():
         return f"🤖 Daily AI News Update - {datetime.now().strftime('%B %d, %Y')}\n\nError fetching news from alternative source: {str(e)}"
 
 if __name__ == "__main__":
-    print(get_daily_ai_news())
+    # Set the console encoding to UTF-8 to handle Unicode characters
+    import sys
+    import os
+    
+    if hasattr(sys.stdout, 'reconfigure'):
+        sys.stdout.reconfigure(encoding='utf-8')
+    elif os.name == 'nt':
+        os.system('chcp 65001 > nul')
+    
+    news = get_daily_ai_news()
+    print(news.encode('utf-8', errors='replace').decode('utf-8'))
