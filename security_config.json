@@ -1,0 +1,37 @@
+{
+  "firewall": {
+    "enabled": true,
+    "last_updated": "2026-02-02T21:37:00",
+    "priority": 1
+  },
+  "express_vpn": {
+    "enabled": true,
+    "last_updated": "2026-02-02T21:37:00",
+    "priority": 1
+  },
+  "smb_service": {
+    "enabled": false,
+    "last_updated": "2026-02-02T21:37:00",
+    "priority": 1
+  },
+  "netbios_service": {
+    "enabled": false,
+    "last_updated": "2026-02-02T21:37:00",
+    "priority": 1
+  },
+  "windows_defender": {
+    "enabled": true,
+    "last_updated": "2026-02-02T21:37:00",
+    "priority": 1
+  },
+  "connection_logging": {
+    "enabled": true,
+    "last_updated": "2026-02-02T21:37:00",
+    "priority": 2
+  },
+  "monitoring_settings": {
+    "check_interval_seconds": 30,
+    "alert_on_change": true,
+    "log_retention_days": 30
+  }
+}

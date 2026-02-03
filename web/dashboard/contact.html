@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - PAID LLC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+        
+        header {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .logo {
+            height: 80px;
+            margin-bottom: 0.5rem;
+        }
+        
+        nav {
+            background: #34495e;
+            padding: 0.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        
+        nav li {
+            margin: 0 1rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        section {
+            margin-bottom: 2rem;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .contact-info {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 5px;
+        }
+        
+        .contact-form {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 5px;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        textarea {
+            height: 150px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+        }
+        
+        .back-to-home {
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="PAID LLC Logo" class="logo" onerror="this.style.display='none'">
+        <h1>PAID LLC</h1>
+        <p>Performance Artificial Intelligence Development</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <a href="index.html" class="btn back-to-home">← Back to Home</a>
+        
+        <section id="contact-header">
+            <h1>Get in Touch</h1>
+            <p>Ready to transform your business with AI? Contact us to discuss your project and discover how our artificial intelligence solutions can drive your success.</p>
+        </section>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Contact Information</h2>
+                <p><strong>Email:</strong> ConnectwithPaid@outlook.com</p>
+                
+                <h3>Service Inquiry</h3>
+                <p>Interested in our AI consulting, solution development, or platform integration services? We'd love to hear about your project and discuss how we can help.</p>
+                
+                <h3>Areas of Expertise</h3>
+                <ul>
+                    <li>AI Consulting & Strategy</li>
+                    <li>Custom AI Solution Development</li>
+                    <li>Microsoft Copilot Integration</li>
+                    <li>Google Gemini Implementation</li>
+                    <li>GitHub & VS Code Enhancement</li>
+                    <li>Business Process Automation</li>
+                    <li>AI Integration & Optimization</li>
+                </ul>
+            </div>
+            
+            <div class="contact-form">
+                <h2>Send a Message</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Service Interest</label>
+                        <select id="service" name="service">
+                            <option value="">Select a service</option>
+                            <option value="consulting">AI Consulting & Strategy</option>
+                            <option value="development">Custom AI Solution Development</option>
+                            <option value="copilot">Microsoft Copilot Integration</option>
+                            <option value="gemini">Google Gemini Implementation</option>
+                            <option value="github">GitHub & VS Code Enhancement</option>
+                            <option value="automation">Business Process Automation</option>
+                            <option value="integration">AI Integration & Optimization</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2026 PAID LLC - Performance Artificial Intelligence Development. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! In a live implementation, this would send your inquiry to ConnectwithPaid@outlook.com');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "voice_communication": {
+    "enabled": true,
+    "default_stt_engine": "whisper",
+    "default_tts_engine": "pyttsx3",
+    "language": "en-US",
+    "recording_settings": {
+      "sample_rate": 16000,
+      "channels": 1,
+      "chunk_size": 1024,
+      "max_duration_seconds": 30,
+      "silence_threshold": 300,
+      "silence_duration_seconds": 1.5
+    },
+    "tts_settings": {
+      "voice_rate": 180,
+      "voice_volume": 0.9,
+      "preferred_voice": null
+    },
+    "server_settings": {
+      "host": "localhost",
+      "port": 8765,
+      "max_connections": 5
+    },
+    "security": {
+      "require_auth": false,
+      "allowed_origins": ["*"]
+    }
+  }
+}

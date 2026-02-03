@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Buy Presentation Editor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            height: calc(100vh - 40px);
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eaeaea;
+        }
+
+        .header h1 {
+            color: #003b64;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: #666;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: #00a651;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #008c45;
+            transform: translateY(-2px);
+        }
+
+        .btn.secondary {
+            background: #6c757d;
+        }
+
+        .btn.secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn.success {
+            background: #28a745;
+        }
+
+        .btn.success:hover {
+            background: #218838;
+        }
+
+        .slide-selector {
+            margin-bottom: 20px;
+        }
+
+        .slide-selector h3 {
+            margin-bottom: 10px;
+            color: #003b64;
+        }
+
+        .slide-list {
+            list-style: none;
+        }
+
+        .slide-list li {
+            padding: 10px;
+            margin-bottom: 5px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            cursor: pointer;
+            border-left: 3px solid #00a651;
+            transition: all 0.2s ease;
+        }
+
+        .slide-list li:hover {
+            background: #e9ecef;
+        }
+
+        .slide-list li.active {
+            background: #d4edda;
+            font-weight: bold;
+        }
+
+        .editor-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            background: #f8f9fa;
+        }
+
+        .editor-section h3 {
+            margin-bottom: 10px;
+            color: #003b64;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .preview-frame {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+        }
+
+        .instructions {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .instructions h3 {
+            margin-top: 0;
+            color: #0c5460;
+        }
+
+        .instructions ul {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+        }
+
+        .slide-content {
+            display: none;
+        }
+
+        .slide-content.active {
+            display: block;
+        }
+
+        .content-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+        }
+
+        .content-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .content-item-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .action-btn {
+            padding: 4px 8px;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .action-btn:hover {
+            background: #5a6268;
+        }
+
+        .action-btn.delete {
+            background: #dc3545;
+        }
+
+        .action-btn.delete:hover {
+            background: #c82333;
+        }
+
+        .action-btn.add {
+            background: #28a745;
+        }
+
+        .action-btn.add:hover {
+            background: #218838;
+        }
+
+        .save-status {
+            padding: 10px;
+            background: #d4edda;
+            color: #155724;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="header">
+                <h1>Best Buy Presentation Editor</h1>
+                <p>Edit your presentation content</p>
+            </div>
+
+            <div class="instructions">
+                <h3>How to Use:</h3>
+                <ul>
+                    <li>Select a slide from the list to edit</li>
+                    <li>Modify the content in the editor panel</li>
+                    <li>Add or remove content items as needed</li>
+                    <li>Preview your changes in real-time</li>
+                    <li>Save your changes when finished</li>
+                </ul>
+            </div>
+
+            <div class="controls">
+                <button class="btn" onclick="loadConfig()">Load Config</button>
+                <button class="btn secondary" onclick="resetToOriginal()">Reset</button>
+                <button class="btn success" onclick="saveConfig()">Save Changes</button>
+            </div>
+
+            <div class="slide-selector">
+                <h3>Slides</h3>
+                <ul class="slide-list" id="slideList">
+                    <!-- Will be populated by JavaScript -->
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1 id="currentSlideTitle">Select a Slide to Edit</h1>
+                <p id="currentSlideSubtitle">No slide selected</p>
+            </div>
+
+            <div id="slideEditor">
+                <div class="editor-section">
+                    <h3>Slide Title
+                        <button class="btn add" onclick="addContentItem('title')">Add Title</button>
+                    </h3>
+                    <div class="form-group">
+                        <label for="slideTitle">Title:</label>
+                        <input type="text" id="slideTitle" class="form-control" placeholder="Enter slide title">
+                    </div>
+                    <div class="form-group">
+                        <label for="slideSubtitle">Subtitle:</label>
+                        <input type="text" id="slideSubtitle" class="form-control" placeholder="Enter slide subtitle (optional)">
+                    </div>
+                </div>
+
+                <div class="editor-section">
+                    <h3>Content Items
+                        <button class="btn add" onclick="addContentItem('paragraph')">Add Paragraph</button>
+                        <button class="btn add" onclick="addContentItem('key-point')">Add Key Point</button>
+                        <button class="btn add" onclick="addContentItem('highlight-impact')">Add Highlight</button>
+                        <button class="btn add" onclick="addContentItem('strategy-section')">Add Strategy Section</button>
+                    </h3>
+                    <div id="contentItems">
+                        <!-- Content items will be added here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="save-status" id="saveStatus">
+                Configuration saved successfully!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let config = {};
+        let currentSlideIndex = -1;
+
+        async function loadConfig() {
+            try {
+                const response = await fetch('config.json');
+                config = await response.json();
+                buildSlideList();
+                showMessage("Configuration loaded successfully!");
+            } catch (error) {
+                console.error('Error loading configuration:', error);
+                showMessage("Error loading configuration: " + error.message, true);
+            }
+        }
+
+        function buildSlideList() {
+            const slideList = document.getElementById('slideList');
+            slideList.innerHTML = '';
+
+            config.slides.forEach((slide, index) => {
+                const li = document.createElement('li');
+                li.textContent = slide.title;
+                li.onclick = () => selectSlide(index);
+                li.id = `slide-${index}`;
+                slideList.appendChild(li);
+            });
+        }
+
+        function selectSlide(index) {
+            // Remove active class from all list items
+            document.querySelectorAll('#slideList li').forEach(li => {
+                li.classList.remove('active');
+            });
+
+            // Add active class to selected item
+            document.getElementById(`slide-${index}`).classList.add('active');
+
+            // Update current slide
+            currentSlideIndex = index;
+            const slide = config.slides[index];
+
+            // Update header
+            document.getElementById('currentSlideTitle').textContent = slide.title;
+            document.getElementById('currentSlideSubtitle').textContent = slide.subtitle || '(no subtitle)';
+
+            // Update slide editor
+            document.getElementById('slideTitle').value = slide.title || '';
+            document.getElementById('slideSubtitle').value = slide.subtitle || '';
+
+            // Load content items
+            loadContentItems(slide.content);
+        }
+
+        function loadContentItems(content) {
+            const container = document.getElementById('contentItems');
+            container.innerHTML = '';
+
+            content.forEach((item, index) => {
+                addItemToEditor(item, index);
+            });
+        }
+
+        function addItemToEditor(item, index) {
+            const container = document.getElementById('contentItems');
+            const div = document.createElement('div');
+            div.className = 'content-item';
+            div.id = `content-item-${index}`;
+
+            let contentHtml = `
+                <div class="content-item-header">
+                    <strong>${item.type.charAt(0).toUpperCase() + item.type.slice(1)}</strong>
+                    <div class="content-item-actions">
+                        <button class="action-btn" onclick="moveContentItem(${index}, -1)">↑</button>
+                        <button class="action-btn" onclick="moveContentItem(${index}, 1)">↓</button>
+                        <button class="action-btn delete" onclick="removeContentItem(${index})">Delete</button>
+                    </div>
+                </div>
+            `;
+
+            switch(item.type) {
+                case 'paragraph':
+                    contentHtml += `
+                        <div class="form-group">
+                            <label>Text:</label>
+                            <textarea class="form-control" onchange="updateContentItem(${index}, 'text', this.value)">${item.text || ''}</textarea>
+                        </div>
+                    `;
+                    break;
+                case 'key-point':
+                case 'highlight-impact':
+                case 'verified-source':
+                case 'real-example':
+                    contentHtml += `
+                        <div class="form-group">
+                            <label>Text:</label>
+                            <textarea class="form-control" onchange="updateContentItem(${index}, 'text', this.value)">${item.text || ''}</textarea>
+                        </div>
+                    `;
+                    break;
+                case 'strategy-section':
+                    contentHtml += `
+                        <div class="form-group">
+                            <label>Subtitle:</label>
+                            <input type="text" class="form-control" value="${item.subtitle || ''}" onchange="updateContentItem(${index}, 'subtitle', this.value)">
+                        </div>
+                    `;
+                    if (item.items && item.items.length > 0) {
+                        contentHtml += `
+                            <div class="form-group">
+                                <label>Items:</label>
+                                <div id="items-container-${index}">
+                        `;
+                        item.items.forEach((listItem, itemIndex) => {
+                            contentHtml += `
+                                <div class="form-group">
+                                    <input type="text" class="form-control" value="${listItem}" onchange="updateContentItemListItem(${index}, ${itemIndex}, this.value)">
+                                    <button class="action-btn delete" onclick="removeContentItemListItem(${index}, ${itemIndex})" style="margin-top: 5px;">Remove Item</button>
+                                </div>
+                            `;
+                        });
+                        contentHtml += `
+                                </div>
+                                <button class="btn add" onclick="addContentItemListItem(${index})" style="margin-top: 10px;">Add Item</button>
+                            </div>
+                        `;
+                    } else {
+                        contentHtml += `
+                            <button class="btn add" onclick="addContentItemListItem(${index})">Add Items List</button>
+                        `;
+                    }
+                    break;
+                case 'confidence-details':
+                    contentHtml += `
+                        <div class="form-group">
+                            <label>Scores:</label>
+                            <div id="scores-container-${index}">
+                        `;
+                        (item.scores || []).forEach((score, scoreIndex) => {
+                            contentHtml += `
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Value (e.g., 95%)" value="${score.value || ''}" onchange="updateContentItemScore(${index}, ${scoreIndex}, 'value', this.value)">
+                                    <input type="text" class="form-control" placeholder="Label (e.g., Accuracy)" value="${score.label || ''}" onchange="updateContentItemScore(${index}, ${scoreIndex}, 'label', this.value)" style="margin-top: 5px;">
+                                    <button class="action-btn delete" onclick="removeContentItemScore(${index}, ${scoreIndex})" style="margin-top: 5px;">Remove Score</button>
+                                </div>
+                            `;
+                        });
+                        contentHtml += `
+                            </div>
+                            <button class="btn add" onclick="addContentItemScore(${index})" style="margin-top: 10px;">Add Score</button>
+                        </div>
+                    `;
+                    break;
+            }
+
+            div.innerHTML = contentHtml;
+            container.appendChild(div);
+        }
+
+        function updateSlideTitle() {
+            if (currentSlideIndex === -1) return;
+            
+            const title = document.getElementById('slideTitle').value;
+            const subtitle = document.getElementById('slideSubtitle').value;
+            
+            config.slides[currentSlideIndex].title = title;
+            config.slides[currentSlideIndex].subtitle = subtitle;
+            
+            // Update the slide list item
+            document.getElementById(`slide-${currentSlideIndex}`).textContent = title;
+            
+            // Update the header
+            document.getElementById('currentSlideTitle').textContent = title;
+            document.getElementById('currentSlideSubtitle').textContent = subtitle || '(no subtitle)';
+        }
+
+        function updateContentItem(index, field, value) {
+            if (currentSlideIndex === -1) return;
+            
+            config.slides[currentSlideIndex].content[index][field] = value;
+        }
+
+        function updateContentItemListItem(contentIndex, itemIndex, value) {
+            if (currentSlideIndex === -1) return;
+            
+            if (!config.slides[currentSlideIndex].content[contentIndex].items) {
+                config.slides[currentSlideIndex].content[contentIndex].items = [];
+            }
+            
+            config.slides[currentSlideIndex].content[contentIndex].items[itemIndex] = value;
+        }
+
+        function removeContentItemListItem(contentIndex, itemIndex) {
+            if (currentSlideIndex === -1) return;
+            
+            if (config.slides[currentSlideIndex].content[contentIndex].items) {
+                config.slides[currentSlideIndex].content[contentIndex].items.splice(itemIndex, 1);
+                
+                // Reload the content item to reflect changes
+                reloadContentItem(contentIndex);
+            }
+        }
+
+        function addContentItemListItem(contentIndex) {
+            if (currentSlideIndex === -1) return;
+            
+            if (!config.slides[currentSlideIndex].content[contentIndex].items) {
+                config.slides[currentSlideIndex].content[contentIndex].items = [];
+            }
+            
+            config.slides[currentSlideIndex].content[contentIndex].items.push('');
+            
+            // Reload the content item to reflect changes
+            reloadContentItem(contentIndex);
+        }
+
+        function updateContentItemScore(contentIndex, scoreIndex, field, value) {
+            if (currentSlideIndex === -1) return;
+            
+            if (!config.slides[currentSlideIndex].content[contentIndex].scores) {
+                config.slides[currentSlideIndex].content[contentIndex].scores = [];
+            }
+            
+            config.slides[currentSlideIndex].content[contentIndex].scores[scoreIndex][field] = value;
+        }
+
+        function removeContentItemScore(contentIndex, scoreIndex) {
+            if (currentSlideIndex === -1) return;
+            
+            if (config.slides[currentSlideIndex].content[contentIndex].scores) {
+                config.slides[currentSlideIndex].content[contentIndex].scores.splice(scoreIndex, 1);
+                
+                // Reload the content item to reflect changes
+                reloadContentItem(contentIndex);
+            }
+        }
+
+        function addContentItemScore(contentIndex) {
+            if (currentSlideIndex === -1) return;
+            
+            if (!config.slides[currentSlideIndex].content[contentIndex].scores) {
+                config.slides[currentSlideIndex].content[contentIndex].scores = [];
+            }
+            
+            config.slides[currentSlideIndex].content[contentIndex].scores.push({ value: '', label: '' });
+            
+            // Reload the content item to reflect changes
+            reloadContentItem(contentIndex);
+        }
+
+        function reloadContentItem(index) {
+            // Temporarily remove and re-add the content item to refresh the UI
+            const container = document.getElementById(`content-item-${index}`);
+            if (container) {
+                const item = config.slides[currentSlideIndex].content[index];
+                container.outerHTML = '';
+                addItemToEditor(item, index);
+            }
+        }
+
+        function addContentItem(type) {
+            if (currentSlideIndex === -1) return;
+            
+            let newItem;
+            
+            switch(type) {
+                case 'title':
+                    // This is handled differently - just update the slide title
+                    return;
+                case 'paragraph':
+                    newItem = {
+                        type: 'paragraph',
+                        text: 'New paragraph text'
+                    };
+                    break;
+                case 'key-point':
+                    newItem = {
+                        type: 'key-point',
+                        text: 'New key point'
+                    };
+                    break;
+                case 'highlight-impact':
+                    newItem = {
+                        type: 'highlight-impact',
+                        text: 'New highlight'
+                    };
+                    break;
+                case 'strategy-section':
+                    newItem = {
+                        type: 'strategy-section',
+                        subtitle: 'New section subtitle',
+                        items: ['New item 1']
+                    };
+                    break;
+                case 'verified-source':
+                    newItem = {
+                        type: 'verified-source',
+                        text: 'New source information'
+                    };
+                    break;
+                case 'real-example':
+                    newItem = {
+                        type: 'real-example',
+                        text: 'New example'
+                    };
+                    break;
+                case 'confidence-details':
+                    newItem = {
+                        type: 'confidence-details',
+                        scores: [{ value: '90%', label: 'Accuracy' }]
+                    };
+                    break;
+                default:
+                    return;
+            }
+            
+            config.slides[currentSlideIndex].content.push(newItem);
+            
+            // Reload content items to reflect the addition
+            loadContentItems(config.slides[currentSlideIndex].content);
+        }
+
+        function removeContentItem(index) {
+            if (currentSlideIndex === -1) return;
+            
+            config.slides[currentSlideIndex].content.splice(index, 1);
+            
+            // Reload content items to reflect the removal
+            loadContentItems(config.slides[currentSlideIndex].content);
+        }
+
+        function moveContentItem(index, direction) {
+            if (currentSlideIndex === -1) return;
+            
+            const content = config.slides[currentSlideIndex].content;
+            const newIndex = index + direction;
+            
+            if (newIndex < 0 || newIndex >= content.length) return;
+            
+            // Swap items
+            [content[index], content[newIndex]] = [content[newIndex], content[index]];
+            
+            // Reload content items to reflect the change
+            loadContentItems(content);
+        }
+
+        function saveConfig() {
+            // Update slide title and subtitle in config
+            if (currentSlideIndex !== -1) {
+                updateSlideTitle();
+            }
+            
+            // Convert config back to JSON and save
+            const configJson = JSON.stringify(config, null, 2);
+            
+            // Create a Blob and download it
+            const blob = new Blob([configJson], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'config.json';
+            document.body.appendChild(a);
+            a.click();
+            
+            // Clean up
+            setTimeout(() => {
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+                
+                // Show save message
+                const msg = document.getElementById('saveStatus');
+                msg.style.display = 'block';
+                setTimeout(() => {
+                    msg.style.display = 'none';
+                }, 2000);
+            }, 100);
+        }
+
+        function resetToOriginal() {
+            if (confirm("Are you sure you want to reset to the original configuration? All unsaved changes will be lost.")) {
+                loadConfig();
+            }
+        }
+
+        function showMessage(message, isError = false) {
+            // Create a temporary message element
+            const msg = document.createElement('div');
+            msg.textContent = message;
+            msg.style.position = 'fixed';
+            msg.style.top = '20px';
+            msg.style.left = '50%';
+            msg.style.transform = 'translateX(-50%)';
+            msg.style.padding = '10px 20px';
+            msg.style.borderRadius = '5px';
+            msg.style.color = 'white';
+            msg.style.backgroundColor = isError ? '#dc3545' : '#28a745';
+            msg.style.zIndex = '1000';
+            msg.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+            
+            document.body.appendChild(msg);
+            
+            setTimeout(() => {
+                document.body.removeChild(msg);
+            }, 3000);
+        }
+
+        // Event listeners for input changes to update config in real-time
+        document.getElementById('slideTitle').addEventListener('change', updateSlideTitle);
+        document.getElementById('slideSubtitle').addEventListener('change', updateSlideTitle);
+
+        // Initialize the editor when the page loads
+        window.onload = function() {
+            loadConfig();
+        };
+    </script>
+</body>
+</html>
